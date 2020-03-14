@@ -18,9 +18,5 @@ namespace BakeryX.EF
 
         public DbSet<Sale> Sales { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
     }
 }

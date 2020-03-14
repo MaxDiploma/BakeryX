@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BakeryX.EF;
 using System.Windows;
 
 namespace BakeryX
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        private BakeryXContext _context;
+
+        public App()
+        {
+            _context = new BakeryXContext();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Seed.SeedData(_context);
+        }
     }
 }

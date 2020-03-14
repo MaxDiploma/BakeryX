@@ -2,5 +2,9 @@
 {
     public enum EmployeePositions
     {
+        Cook,
+        CookTrainee,
+        Manager,
+        Admin
     }
 }
