@@ -1,0 +1,104 @@
+﻿<Window x:Class="Bakeshop.Views.EmployeeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bakeshop.Views"
+        mc:Ignorable="d"
+        Title="Employees" Height="450" Width="880">
+    <Grid>
+
+        <Border  Grid.RowSpan="2"
+                    Grid.ColumnSpan="3">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FC5C7D" Offset="0.0"/>
+                    <GradientStop Color="#6A82FB" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="300"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Button Width="49" Height="40" 
+                            VerticalAlignment="Top" 
+                            Content="&#x2190;"
+                            Margin="30,20,0,0"
+                            FontSize="15"
+                            Command="{Binding GetToPreviousWindowCommand}"/>
+                <TextBlock Text="Employees"
+                           Margin="50,30,0,0"
+                           FontSize="30"
+                           FontFamily="Helvetica"
+                           FontWeight="Light"
+                           Foreground="AliceBlue"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Width="150" Height="30" 
+                            VerticalAlignment="Top" 
+                            Content="Filter by firstname"
+                            Margin="30,100,0,0"
+                            FontSize="15"
+                            Command="{Binding SortByFirstnameCommand}"/>
+
+                <Button Width="150" Height="30" 
+                            VerticalAlignment="Top" 
+                            Content="Filter by lastname"
+                            Margin="30,100,0,0"
+                            FontSize="15"
+                            Command="{Binding SortByLastnameCommand}"/>
+
+                <Button Width="150" Height="30" 
+                            VerticalAlignment="Top" 
+                            Content="Filter by position"
+                            Margin="30,100,0,0"
+                            FontSize="15"
+                            Command="{Binding SortByPositionCommand}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <ListView Margin="20,20,20,0" ItemsSource="{Binding Employees}" x:Name="employees"
+          ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Firstname" Width="155" DisplayMemberBinding="{Binding Firstname}" />
+                            <GridViewColumn Header="Lastname" Width="155" DisplayMemberBinding="{Binding Lastname}" />
+                            <GridViewColumn Header="Age" Width="50" DisplayMemberBinding="{Binding Age}" />
+                            <GridViewColumn Header="Email" Width="190" DisplayMemberBinding="{Binding Email}" />
+                            <GridViewColumn Header="Position" Width="132" DisplayMemberBinding="{Binding Position}" />
+                            <GridViewColumn Header="Phone number" Width="132" DisplayMemberBinding="{Binding Phone}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBox Text="Search"
+                             Background="Transparent"
+                             Foreground="Black"
+                             FontWeight="Light"
+                             FontFamily="Helvetica"
+                             FontSize="22"
+                             x:Name="SearchField"
+                             VerticalContentAlignment="Center"
+                             Width="203"
+                             Margin="30,5,0,20"
+                             BorderThickness="1"
+                             BorderBrush="Black"/>
+                <Button Width="53"
+                            Content="🔎"
+                            Margin="30,5,0,20"
+                            Command="{Binding SearchCommand}"
+                            CommandParameter="{Binding ElementName=SearchField}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
