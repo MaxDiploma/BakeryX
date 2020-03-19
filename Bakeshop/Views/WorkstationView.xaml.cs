@@ -32,8 +32,10 @@ namespace Bakeshop.Views
 
             saleView.ShowDialog();
 
-            var windowContext = this.DataContext as WorkstationViewModel;
-            windowContext.LoadProducts();
-        }
+            var viewModel = new WorkstationViewModel();
+            this.DataContext = viewModel;
+            if (viewModel.CloseAction == null)
+              viewModel.CloseAction = new Action(this.Close);
+    }
     }
 }

@@ -1,0 +1,55 @@
+﻿<Window x:Class="Bakeshop.Views.AnalysisCenterView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bakeshop.Views"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="AnalysisCenterView" Height="750.424" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125"/>
+            <RowDefinition Height="450"/>
+            <RowDefinition Height="450"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FC5C7D" Offset="0.0"/>
+                    <GradientStop Color="#6A82FB" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Border Grid.Row="2">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FC5C7D" Offset="0.0"/>
+                    <GradientStop Color="#6A82FB" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Button Width="49" Height="40" 
+                        VerticalAlignment="Top" 
+                        Content="&#x2190;"
+                        Margin="30,20,0,0"
+                        FontSize="15"
+                        Command="{Binding GetToPreviousWindowCommand}"/>
+                <TextBlock Text="Analysis Center"
+                           Margin="50,30,0,0"
+                           FontSize="30"
+                           FontFamily="Helvetica"
+                           FontWeight="Light"
+                           Foreground="AliceBlue"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </StackPanel>
+
+            <oxy:PlotView Grid.Row="1" Height="450" Model="{Binding Model}"/>
+    </Grid>
+</Window>

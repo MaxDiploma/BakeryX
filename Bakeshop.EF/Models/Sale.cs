@@ -1,4 +1,5 @@
 ﻿using System;
+using Bakeshop.Common.Enums;
 
 namespace Bakeshop.EF.Models
 {
@@ -7,6 +8,10 @@ namespace Bakeshop.EF.Models
         public string Name { get; set; }
 
         public int Amount { get; set; }
+
+        public UomTypes UomType { get; set; }
+
+        public double Quantity { get; set; }
 
         public DateTime TransactionDate { get; set; }
     }

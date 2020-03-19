@@ -5,6 +5,8 @@ using GalaSoft.MvvmLight;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -58,7 +60,7 @@ namespace Bakeshop.ViewModels
             }
         }
 
-        public async void SaleBakeryProduct(object param)
+        public void SaleBakeryProduct(object param)
         {
             var textBox = param as TextBox;
             var orderedQuantity = int.Parse(textBox.Text);
@@ -68,15 +70,23 @@ namespace Bakeshop.ViewModels
                 Amount = orderedQuantity * _bakeryProduct.Price,
                 Name = _bakeryProduct.Name,
                 TransactionDate = DateTime.UtcNow,
+                UomType = _bakeryProduct.UomType,
+                Quantity = orderedQuantity
             };
 
             _context.Sales.Add(sale);
 
-            var product = await _context.BakeryProducts.FirstOrDefaultAsync(bk => bk.Id == _bakeryProduct.Id);
+            var product = _context.BakeryProducts.FirstOrDefault(bk => bk.Id == _bakeryProduct.Id);
+
+            if (orderedQuantity > product.Quantity)
+            {
+                MessageBox.Show("You cannot sell more than you have", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             product.Quantity -= orderedQuantity;
 
-            if(product.Quantity == 0)
+            if (product.Quantity == 0)
             {
                 _context.BakeryProducts.Remove(product);
             }

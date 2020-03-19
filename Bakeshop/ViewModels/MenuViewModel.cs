@@ -16,6 +16,7 @@ namespace Bakeshop.ViewModels
             OpenSuppliersCommand = new RelayCommand(MoveToSuppliers);
             OpenRecipesCommand = new RelayCommand(MoveToRecipes);
             OpenWorkstationCommand = new RelayCommand(MoveToWorkstation);
+            OpenAnalysisCenter = new RelayCommand(MoveToAnalysisCenter);
         }
 
         public ICommand OpenEmployeesCommand { get; private set; }
@@ -27,6 +28,8 @@ namespace Bakeshop.ViewModels
         public ICommand OpenRecipesCommand { get; private set; }
 
         public ICommand OpenWorkstationCommand { get; private set; }
+
+        public ICommand OpenAnalysisCenter { get; private set; }
 
         public Action CloseAction { get; set; }
 
@@ -61,6 +64,13 @@ namespace Bakeshop.ViewModels
         {
             var workstation = new WorkstationView();
             workstation.Show();
+            CloseAction();
+        }
+
+        private void MoveToAnalysisCenter()
+        {
+            var analysisCenterDatesPicker = new AnalysisCenterDatesPicker();
+            analysisCenterDatesPicker.Show();
             CloseAction();
         }
 

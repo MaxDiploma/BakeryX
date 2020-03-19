@@ -49,12 +49,12 @@ namespace Bakeshop.ViewModels
             }
         }
 
-        public async void LoadProducts()
+        public void LoadProducts()
         {
             BakeryProducts = new ObservableCollection<BakeryProductDomain>();
 
-            var bakeryProducts = await _context.BakeryProducts
-                .ToListAsync();
+            var bakeryProducts = _context.BakeryProducts
+                .ToList();
 
             foreach (var bakeryProduct in bakeryProducts)
             {

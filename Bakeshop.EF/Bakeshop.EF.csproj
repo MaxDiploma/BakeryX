@@ -89,6 +89,10 @@
     <Compile Include="Migrations\202003152030044_ChangedBakeryProductModel.designer.cs">
       <DependentUpon>202003152030044_ChangedBakeryProductModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003181451599_ModifiedSaleModel.cs" />
+    <Compile Include="Migrations\202003181451599_ModifiedSaleModel.designer.cs">
+      <DependentUpon>202003181451599_ModifiedSaleModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BakeryProduct.cs" />
     <Compile Include="Models\BakeshopProduct.cs" />
@@ -140,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003152030044_ChangedBakeryProductModel.resx">
       <DependentUpon>202003152030044_ChangedBakeryProductModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181451599_ModifiedSaleModel.resx">
+      <DependentUpon>202003181451599_ModifiedSaleModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

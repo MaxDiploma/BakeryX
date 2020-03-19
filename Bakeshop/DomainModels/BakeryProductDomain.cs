@@ -3,7 +3,6 @@ using Bakeshop.Common.Enums;
 using Bakeshop.ViewModels;
 using Bakeshop.Views;
 using System;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Bakeshop.DomainModels
@@ -41,7 +40,7 @@ namespace Bakeshop.DomainModels
             var saleView = new SaleBakeryProductView();
             saleView.DataContext = new SaleBakeryProductViewModel(param as Guid?)
             {
-                CloseAction = ((RecipeDetailsViewModel)saleView.DataContext).CloseAction
+                CloseAction = ((SaleBakeryProductViewModel)saleView.DataContext).CloseAction
             };
 
             saleView.ShowDialog();

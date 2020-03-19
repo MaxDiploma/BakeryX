@@ -621,6 +621,63 @@ namespace Bakeshop.EF
                 context.BakeryProducts.AddRange(bakeryProducts);
             }
 
+            if (!context.Sales.Any())
+            {
+                var sales = new List<Sale>
+                {
+                    new Sale
+                    {
+                        Quantity = 3,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow.AddDays(-1),
+                        UomType = UomTypes.Killograms,
+                        Name = "Meat"
+                    },
+                    new Sale
+                    {
+                        Quantity = 15,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow,
+                        UomType = UomTypes.Killograms,
+                        Name = "Meat"
+                    },
+                    new Sale
+                    {
+                        Quantity = 5,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow.AddDays(1),
+                        UomType = UomTypes.Killograms,
+                        Name = "Meat"
+                    },
+                    new Sale
+                    {
+                        Quantity = 5,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow.AddDays(-1),
+                        UomType = UomTypes.Litres,
+                        Name = "Milk"
+                    },
+                    new Sale
+                    {
+                        Quantity = 10,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow,
+                        UomType = UomTypes.Litres,
+                        Name = "Milk"
+                    },
+                    new Sale
+                    {
+                        Quantity = 20,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow.AddDays(1),
+                        UomType = UomTypes.Litres,
+                        Name = "Milk"
+                    }
+                };
+
+                context.Sales.AddRange(sales);
+            }
+
             context.SaveChanges();
         }
     }
