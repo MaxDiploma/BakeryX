@@ -95,6 +95,7 @@
     <Compile Include="CommandHandler\BaseCommandHandler.cs" />
     <Compile Include="DomainModels\BakeryProductDomain.cs" />
     <Compile Include="DomainModels\BakeshopProductDomain.cs" />
+    <Compile Include="DomainModels\ComboData.cs" />
     <Compile Include="DomainModels\RecipeDomain.cs" />
     <Compile Include="DomainModels\SupplierDomain.cs" />
     <Compile Include="Extensions\BakeryProductExtensions.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="ViewModels\AnalysisCenterViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\OrderProductViewModel.cs" />
     <Compile Include="ViewModels\RecipeDetailsViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="ViewModels\SaleBakeryProductViewModel.cs" />
@@ -123,6 +125,9 @@
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProductView.xaml.cs">
+      <DependentUpon>OrderProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecipeDetailsView.xaml.cs">
       <DependentUpon>RecipeDetailsView.xaml</DependentUpon>
@@ -201,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

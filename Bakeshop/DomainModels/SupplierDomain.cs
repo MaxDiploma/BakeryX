@@ -1,9 +1,12 @@
 ﻿using Bakeshop.Common.Enums;
+using System;
 
 namespace Bakeshop.DomainModels
 {
     public class SupplierDomain
     {
+        public Guid Id { get; set; }
+
         public string Firstname { get; set; }
 
         public string Lastname { get; set; }

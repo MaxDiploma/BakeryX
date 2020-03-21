@@ -16,7 +16,8 @@ namespace Bakeshop.Extensions
                 Lastname = supplier.Lastname,
                 Phone = supplier.Phone,
                 Position = supplier.Position,
-                Products = supplier.Products.Select(p => p.Name).Aggregate((a, b) => a + ", " + b)
+                Products = supplier.Products.Select(p => p.Name).Aggregate((a, b) => a + ", " + b),
+                Id = supplier.Id
             };
         }
     }

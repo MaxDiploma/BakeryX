@@ -65,7 +65,7 @@
 
             <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <ListView Margin="20,20,20,0" ItemsSource="{Binding Products}" x:Name="products"
-          ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
+          ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedItem="{Binding SelectedItem}" Background="Transparent" BorderThickness="0">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
@@ -75,11 +75,17 @@
                             <GridViewColumn Header="Expiration Date" Width="190" DisplayMemberBinding="{Binding ExpirationDate}" />
                         </GridView>
                     </ListView.View>
+                    <ListView.Resources>
+                        <ContextMenu x:Key="ItemContextMenu">
+                            <MenuItem Header="Remove from warehouse" Command="{Binding WriteOffProductCommand}" CommandParameter="{Binding Id}" Background="WhiteSmoke" />
+                        </ContextMenu>
+                    </ListView.Resources>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsExpired}" Value="False">
                                     <Setter Property="Background" Value="Red" />
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

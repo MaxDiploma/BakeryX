@@ -78,6 +78,11 @@
                             <GridViewColumn Header="Products" Width="132" DisplayMemberBinding="{Binding Products}" />
                         </GridView>
                     </ListView.View>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <EventSetter Event="MouseDoubleClick" Handler="listViewItem_MouseDoubleClick" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
                 </ListView>
             </StackPanel>
 

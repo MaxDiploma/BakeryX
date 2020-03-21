@@ -15,7 +15,8 @@ namespace Bakeshop.Extensions
                 Quantity = bakeshopProduct.Quantity,
                 Name = bakeshopProduct.Name,
                 IsExpired = bakeshopProduct.ExpirationDate > DateTime.UtcNow ? true : false,
-                UomType = bakeshopProduct.UomType
+                UomType = bakeshopProduct.UomType,
+                Id = bakeshopProduct.Id
             };
         }
     }

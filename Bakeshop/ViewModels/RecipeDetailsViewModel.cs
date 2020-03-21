@@ -1,7 +1,6 @@
 ﻿using Bakeshop.Common.Enums;
 using Bakeshop.EF;
 using Bakeshop.EF.Models;
-using Bakeshop.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
@@ -20,7 +19,6 @@ namespace Bakeshop.ViewModels
         private ObservableCollection<Ingredient> _ingredients;
         private bool _isCraftButtonEnabled;
         private string _quantity;
-        private string _price;
 
         public RecipeDetailsViewModel(Guid? recipeId)
         {
@@ -47,12 +45,6 @@ namespace Bakeshop.ViewModels
         {
             get { return _quantity; }
             set { Set(ref _quantity, value); }
-        }
-
-        public string Price
-        {
-            get { return _price; }
-            set { Set(ref _price, value); }
         }
 
         public bool IsCraftButtonEnabled
@@ -96,6 +88,18 @@ namespace Bakeshop.ViewModels
 
             var ingredients = Formula.FormulaIngredients.Select(fi => fi.Ingredient);
 
+            if (string.IsNullOrEmpty(Quantity))
+            {
+                MessageBox.Show($"You have to fill quantity", "Exception", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (int.Parse(Quantity) == 00)
+            {
+                MessageBox.Show($"You have to fill quantity with valid values", "Exception", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
             foreach (var ingredient in ingredients)
             {
                 var product = products.FirstOrDefault(p => p.Name == ingredient.Name);
@@ -131,7 +135,7 @@ namespace Bakeshop.ViewModels
                 ExpirationDate = DateTime.UtcNow.AddDays(2),
                 IsSold = true,
                 Name = Formula.Name,
-                Price = int.Parse(Price),
+                Price = Formula.Price,
                 Quantity = int.Parse(Quantity),
                 UomType = UomTypes.Pcs
             };
@@ -147,8 +151,6 @@ namespace Bakeshop.ViewModels
 
         public void GetToPreviousWindow()
         {
-            var recipes = new RecipesView();
-            recipes.Show();
             CloseAction();
         }
 

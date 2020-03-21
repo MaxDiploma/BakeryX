@@ -2,7 +2,6 @@
 using Bakeshop.Common.Enums;
 using Bakeshop.DomainModels;
 using Bakeshop.EF;
-using Bakeshop.EF.Models;
 using Bakeshop.Extensions;
 using Bakeshop.Views;
 using GalaSoft.MvvmLight;
@@ -24,6 +23,7 @@ namespace Bakeshop.ViewModels
         private bool _isOrderedByDescendingQuantity;
         private bool _isOrderedByDescendingDate;
         private ICommand _searchCommand;
+        private BakeshopProductDomain _selectedItem;
 
         public WarehouseViewModel()
         {
@@ -41,8 +41,13 @@ namespace Bakeshop.ViewModels
             set { Set(ref _products, value); }
         }
 
-        public ICommand GetToPreviousWindowCommand { get; set; }
+        public BakeshopProductDomain SelectedItem
+        {
+            get { return _selectedItem; }
+            set { Set(ref _selectedItem, value); }
+        }
 
+        public ICommand GetToPreviousWindowCommand { get; set; }
 
         public ICommand SortByNameCommand { get; set; }
 
@@ -69,8 +74,26 @@ namespace Bakeshop.ViewModels
 
             foreach (var product in products)
             {
-                Products.Add(product.ToDomain());
+                var domainProduct = product.ToDomain();
+                domainProduct.ProductRemoved += UpdateProductsEventHandler;
+                Products.Add(domainProduct);
             }
+        }
+
+        public void UpdateProductsEventHandler(object sender, EventArgs e)
+        {
+            Products.Clear();
+
+            var products =  _context.BakeshopProducts.ToList();
+
+            foreach (var product in products)
+            {
+                var domainProduct = product.ToDomain();
+                domainProduct.ProductRemoved += UpdateProductsEventHandler;
+                Products.Add(domainProduct);
+            }
+
+            RaisePropertyChanged("Products");
         }
 
         private void SortByName()

@@ -74,25 +74,8 @@
                            Foreground="AliceBlue"
                            TextWrapping="Wrap"/>
             </StackPanel>
-            
+
             <StackPanel Height="100" Grid.Row="3" HorizontalAlignment="Center" Orientation="Horizontal">
-                <StackPanel Grid.Row="3">
-                    <TextBlock FontSize="30"
-                           FontFamily="Helvetica"
-                           FontWeight="Light"
-                           Foreground="AliceBlue"
-                           TextWrapping="Wrap"
-                           Height="35" HorizontalAlignment="Center" Width="65" Text="Price"/>
-                    <TextBox HorizontalAlignment="Center"
-                         Width="200"
-                         x:Name="QuantityField"
-                         Height="20"
-                         Text="{Binding Price}"
-                         Background="Transparent"
-                         BorderBrush="Black"
-                         BorderThickness="2"
-                         Margin="0,20,0,0"/>
-                </StackPanel>
                 <StackPanel Margin="20,0,0,0" Grid.Row="3">
                     <TextBlock FontSize="30"
                            FontFamily="Helvetica"
@@ -100,14 +83,15 @@
                            Foreground="AliceBlue"
                            TextWrapping="Wrap"
                            Height="35" HorizontalAlignment="Center" Width="115" Text="Quantity"/>
-                    <TextBox HorizontalAlignment="Center"
-                         Width="200"
-                         Height="20"
-                         Text="{Binding Quantity}"
-                         Background="Transparent"
-                         BorderBrush="Black"
-                         BorderThickness="2"
-                         Margin="0,20,0,0"/>
+                    <TextBox Margin="0,20,0,0"
+                Text="{Binding Quantity}"
+                Width="200"
+                Height="30"
+                FontSize="16"
+                Background="Transparent"
+                BorderBrush="Black"
+                BorderThickness="2"
+                FontFamily="Helvetica"/>
                 </StackPanel>
             </StackPanel>
 

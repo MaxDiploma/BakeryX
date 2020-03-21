@@ -3,7 +3,6 @@ using OxyPlot;
 using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -67,8 +66,10 @@ namespace Bakeshop.ViewModels
             plot.TitleFont = "Helvetica";
             plot.TitleFontSize = 20;
 
+            var extentedTo = new DateTime(_to.Year, _to.Month, _to.Day, 23, 59, 59);
+
             var sales = _context.Sales
-                .Where(s => s.TransactionDate >= _from && s.TransactionDate < _to)
+                .Where(s => s.TransactionDate >= _from && s.TransactionDate < extentedTo)
                 .ToList();
 
             if (sales.Count != 0)

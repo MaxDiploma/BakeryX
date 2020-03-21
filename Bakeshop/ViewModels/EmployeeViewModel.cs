@@ -50,7 +50,6 @@ namespace Bakeshop.ViewModels
 
         public Action CloseAction { get; set; }
 
-
         public ICommand SearchCommand
         {
             get

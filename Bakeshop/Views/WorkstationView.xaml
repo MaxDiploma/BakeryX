@@ -86,7 +86,6 @@
                             <EventSetter Event="MouseDoubleClick" Handler="listViewItem_MouseDoubleClick" />
                         </Style>
                     </ListView.ItemContainerStyle>
-     
                 </ListView>
             </StackPanel>
 

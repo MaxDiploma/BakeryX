@@ -1,0 +1,91 @@
+﻿<Window x:Class="Bakeshop.Views.OrderProductView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bakeshop.Views"
+        mc:Ignorable="d"
+        Title="OrderProductView" Height="550" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border  Grid.RowSpan="5">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FC5C7D" Offset="0.0"/>
+                    <GradientStop Color="#6A82FB" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Width="49" Height="40" 
+                            VerticalAlignment="Top" 
+                            Content="&#x2190;"
+                            Margin="30,20,0,0"
+                            FontSize="15"
+                            Command="{Binding GetToPreviousWindowCommand}"/>
+            <TextBlock Text="Orders"
+                           Margin="50,30,0,0"
+                           FontSize="30"
+                           FontFamily="Helvetica"
+                           FontWeight="Light"
+                           Foreground="AliceBlue"
+                           TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Margin="0,40,0,0" Text="Choose product that you need to order"
+                       HorizontalAlignment="Center"
+                       FontSize="16"/>
+            <ComboBox Margin="0,10,0,0" ItemsSource="{Binding ProductTypes}" 
+                DisplayMemberPath="Value" 
+                SelectedValuePath="Value" 
+                SelectedValue="{Binding SelectedProductType}"
+                Width="200"
+                Height="30"
+                FontSize="16"
+                FontFamily="Helvetica"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock Margin="0,40,0,0" Text="Choose unit of measure"
+                       HorizontalAlignment="Center"
+                       FontSize="16"/>
+            <ComboBox Margin="0,10,0,0" ItemsSource="{Binding Uoms}" 
+                DisplayMemberPath="Value" 
+                SelectedValuePath="Value" 
+                SelectedValue="{Binding SelectedUom}"
+                Width="200"
+                Height="30"
+                FontSize="16"
+                FontFamily="Helvetica"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3">
+            <TextBlock Margin="0,40,0,0" Text="Quantity"
+                       HorizontalAlignment="Center"
+                       FontSize="16"/>
+            <TextBox Margin="0,10,0,0" 
+                Text="{Binding Quantity}"
+                Width="200"
+                Height="30"
+                FontSize="16"
+                FontFamily="Helvetica"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4">
+            <Button Content="Order"
+                    Width="150"
+                    Height="40"
+                    Margin="0,30,0,0"
+                    Command ="{Binding OrderCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>
