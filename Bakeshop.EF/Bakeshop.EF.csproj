@@ -93,6 +93,18 @@
     <Compile Include="Migrations\202003181451599_ModifiedSaleModel.designer.cs">
       <DependentUpon>202003181451599_ModifiedSaleModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003191835364_RemovedReceivedDate.cs" />
+    <Compile Include="Migrations\202003191835364_RemovedReceivedDate.designer.cs">
+      <DependentUpon>202003191835364_RemovedReceivedDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003191848300_ChangedToDouble.cs" />
+    <Compile Include="Migrations\202003191848300_ChangedToDouble.designer.cs">
+      <DependentUpon>202003191848300_ChangedToDouble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003191922025_ChangedToDouble1.cs" />
+    <Compile Include="Migrations\202003191922025_ChangedToDouble1.designer.cs">
+      <DependentUpon>202003191922025_ChangedToDouble1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BakeryProduct.cs" />
     <Compile Include="Models\BakeshopProduct.cs" />
@@ -147,6 +159,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003181451599_ModifiedSaleModel.resx">
       <DependentUpon>202003181451599_ModifiedSaleModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003191835364_RemovedReceivedDate.resx">
+      <DependentUpon>202003191835364_RemovedReceivedDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003191848300_ChangedToDouble.resx">
+      <DependentUpon>202003191848300_ChangedToDouble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003191922025_ChangedToDouble1.resx">
+      <DependentUpon>202003191922025_ChangedToDouble1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

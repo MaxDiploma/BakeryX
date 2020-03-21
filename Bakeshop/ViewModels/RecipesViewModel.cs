@@ -30,7 +30,7 @@ namespace Bakeshop.ViewModels
             GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
             NextPageCommand = new RelayCommand(NextPage);
             PreviousPageCommand = new RelayCommand(PreviousPage);
-            IsNextPageButtonEnabled = true;
+            IsNextPageButtonEnabled = false;
             IsPreviousPageButtonEnabled = true;
             LoadFormulas();
         }
@@ -109,7 +109,7 @@ namespace Bakeshop.ViewModels
             RaisePropertyChanged("Formulas");
         }
 
-        public async void GetToPreviousWindow()
+        public void GetToPreviousWindow()
         {
             var menu = new MenuView();
             menu.Show();

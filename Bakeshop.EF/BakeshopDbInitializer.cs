@@ -73,7 +73,9 @@ namespace Bakeshop.EF
             var water = new Product { Name = "Water" };
             var sausages = new Product { Name = "Sausages" };
             var butter = new Product { Name = "Butter" };
-            var flour = new Product { Name = "flour" };
+            var flour = new Product { Name = "Flour" };
+            var sugar = new Product { Name = "Sugar" };
+            var potato = new Product { Name = "Potato" };
 
             var supplier1 = new Supplier
             {
@@ -85,7 +87,8 @@ namespace Bakeshop.EF
                 Products = new List<Product>
                         {
                             meat,
-                            milk
+                            milk,
+                            sugar
                         },
                 Phone = "(111)-111-111-11"
             };
@@ -100,7 +103,8 @@ namespace Bakeshop.EF
                 Products = new List<Product>
                         {
                             eggs,
-                            water
+                            water,
+                            potato
                         },
                 Phone = "(111)-111-111-11"
             };
@@ -115,7 +119,8 @@ namespace Bakeshop.EF
                 Products = new List<Product>
                         {
                             sausages,
-                            butter
+                            butter,
+                            sugar
                         },
                 Phone = "(111)-111-111-11"
             };
@@ -129,7 +134,8 @@ namespace Bakeshop.EF
                 Email = "name4@test.com",
                 Products = new List<Product>
                         {
-                            flour
+                            flour,
+                            potato
                         },
                 Phone = "(111)-111-111-11"
             };
@@ -170,14 +176,14 @@ namespace Bakeshop.EF
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Milk",
+                                Name = "Meat",
                                 Quantity = 300,
                                 UomType = UomTypes.Gramms
                             }
                         }
                     },
                     Description = LoremIpsum,
-                    Name = "KOTLETA",
+                    Name = "Cutlet",
                     RecipeType = RecipeTypes.Traditional
                 },
                 new Formula
@@ -189,23 +195,23 @@ namespace Bakeshop.EF
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Meat",
-                                Quantity = 1,
-                                UomType = UomTypes.Killograms
+                                Name = "Eggs",
+                                Quantity = 5,
+                                UomType = UomTypes.Pcs
                             }
                         },
                           new FormulaIngredient
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Flour",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
+                                Name = "Sausages",
+                                Quantity = 0.5,
+                                UomType = UomTypes.Killograms
                             }
                         }
                     },
                     Description = LoremIpsum,
-                    Name = "BORSH",
+                    Name = "Omelette",
                     RecipeType = RecipeTypes.Asian
                 },
                 new Formula
@@ -217,8 +223,8 @@ namespace Bakeshop.EF
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Sausages",
-                                Quantity = 4,
+                                Name = "Eggs",
+                                Quantity = 10,
                                 UomType = UomTypes.Gramms
                             }
                         },
@@ -226,14 +232,14 @@ namespace Bakeshop.EF
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Butter",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
+                                Name = "Flour",
+                                Quantity = 2,
+                                UomType = UomTypes.Killograms
                             }
                         }
                     },
                     Description = LoremIpsum,
-                    Name = "PAMPUSHKA",
+                    Name = "Bread",
                     RecipeType = RecipeTypes.Vegan
                 },
                 new Formula
@@ -244,23 +250,59 @@ namespace Bakeshop.EF
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
+                                Name = "Bread",
+                                Quantity = 300,
+                                UomType = UomTypes.Gramms
                             }
                         },
                           new FormulaIngredient
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Milk",
-                                Quantity = 300,
+                                Name = "Butter",
+                                Quantity = 100,
                                 UomType = UomTypes.Gramms
                             }
                         }
                     },
                     Description = LoremIpsum,
-                    Name = "SUSHI",
+                    Name = "Sandwich",
+                    RecipeType = RecipeTypes.Traditional
+                },
+                new Formula
+                {
+                    FormulaIngredients = new List<FormulaIngredient>
+                    {
+                        new FormulaIngredient
+                        {
+                            Ingredient = new Ingredient
+                            {
+                                Name = "Water",
+                                Quantity = 1,
+                                UomType = UomTypes.Litres
+                            }
+                        },
+                          new FormulaIngredient
+                        {
+                            Ingredient = new Ingredient
+                            {
+                                Name = "Meat",
+                                Quantity = 300,
+                                UomType = UomTypes.Gramms
+                            }
+                        },
+                            new FormulaIngredient
+                        {
+                            Ingredient = new Ingredient
+                            {
+                                Name = "Eggs",
+                                Quantity = 1,
+                                UomType = UomTypes.Pcs
+                            }
+                        }
+                    },
+                    Description = LoremIpsum,
+                    Name = "Miso-soup",
                     RecipeType = RecipeTypes.Traditional
                 },
                 new Formula
@@ -280,41 +322,23 @@ namespace Bakeshop.EF
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Milk",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
-                            }
-                        }
-                    },
-                    Description = LoremIpsum,
-                    Name = "MISOSUP",
-                    RecipeType = RecipeTypes.Traditional
-                },
-                new Formula
-                {
-                    FormulaIngredients = new List<FormulaIngredient>
-                    {
-                        new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
+                                Name = "Flour",
+                                Quantity = 1,
+                                UomType = UomTypes.Killograms
                             }
                         },
-                          new FormulaIngredient
+                           new FormulaIngredient
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Milk",
-                                Quantity = 300,
+                                Name = "Sugar",
+                                Quantity = 500,
                                 UomType = UomTypes.Gramms
                             }
                         }
                     },
                     Description = LoremIpsum,
-                    Name = "SHLAPA",
+                    Name = "Muffin",
                     RecipeType = RecipeTypes.Traditional
                 },
                  new Formula
@@ -326,7 +350,7 @@ namespace Bakeshop.EF
                             Ingredient = new Ingredient
                             {
                                 Name = "Eggs",
-                                Quantity = 4,
+                                Quantity = 5,
                                 UomType = UomTypes.Pcs
                             }
                         },
@@ -334,205 +358,25 @@ namespace Bakeshop.EF
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Milk",
+                                Name = "Butter",
                                 Quantity = 300,
                                 UomType = UomTypes.Gramms
-                            }
-                        }
-                    },
-                    Description = LoremIpsum,
-                    Name = "SHLAPA",
-                    RecipeType = RecipeTypes.Traditional
-                },
-                  new Formula
-                {
-                    FormulaIngredients = new List<FormulaIngredient>
-                    {
-                        new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
                             }
                         },
-                          new FormulaIngredient
+                           new FormulaIngredient
                         {
                             Ingredient = new Ingredient
                             {
-                                Name = "Milk",
+                                Name = "Sausages",
                                 Quantity = 300,
                                 UomType = UomTypes.Gramms
                             }
                         }
                     },
                     Description = LoremIpsum,
-                    Name = "SHLAPA",
+                    Name = "Toasts",
                     RecipeType = RecipeTypes.Traditional
-                },
-                   new Formula
-                {
-                    FormulaIngredients = new List<FormulaIngredient>
-                    {
-                        new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
-                            }
-                        },
-                          new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Milk",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
-                            }
-                        }
-                    },
-                    Description = LoremIpsum,
-                    Name = "SHLAPA",
-                    RecipeType = RecipeTypes.Traditional
-                },
-                    new Formula
-                {
-                    FormulaIngredients = new List<FormulaIngredient>
-                    {
-                        new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
-                            }
-                        },
-                          new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Milk",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
-                            }
-                        }
-                    },
-                    Description = LoremIpsum,
-                    Name = "SHLAPA",
-                    RecipeType = RecipeTypes.Traditional
-                },
-                     new Formula
-                {
-                    FormulaIngredients = new List<FormulaIngredient>
-                    {
-                        new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
-                            }
-                        },
-                          new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Milk",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
-                            }
-                        }
-                    },
-                    Description = LoremIpsum,
-                    Name = "SHLAPA",
-                    RecipeType = RecipeTypes.Traditional
-                },
-                      new Formula
-                {
-                    FormulaIngredients = new List<FormulaIngredient>
-                    {
-                        new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
-                            }
-                        },
-                          new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Milk",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
-                            }
-                        }
-                    },
-                    Description = LoremIpsum,
-                    Name = "SHLAPA",
-                    RecipeType = RecipeTypes.Traditional
-                },
-                       new Formula
-                {
-                    FormulaIngredients = new List<FormulaIngredient>
-                    {
-                        new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
-                            }
-                        },
-                          new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Milk",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
-                            }
-                        }
-                    },
-                    Description = LoremIpsum,
-                    Name = "SHLAPA",
-                    RecipeType = RecipeTypes.Traditional
-                },
-                        new Formula
-                {
-                    FormulaIngredients = new List<FormulaIngredient>
-                    {
-                        new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Eggs",
-                                Quantity = 4,
-                                UomType = UomTypes.Pcs
-                            }
-                        },
-                          new FormulaIngredient
-                        {
-                            Ingredient = new Ingredient
-                            {
-                                Name = "Milk",
-                                Quantity = 300,
-                                UomType = UomTypes.Gramms
-                            }
-                        }
-                    },
-                    Description = LoremIpsum,
-                    Name = "SHLAPA",
-                    RecipeType = RecipeTypes.Traditional
-                },
+                }
             };
 
                 context.Formulas.AddRange(formulas);
@@ -592,29 +436,26 @@ namespace Bakeshop.EF
                     new BakeryProduct
                     {
                         ExpirationDate = DateTime.UtcNow.AddDays(1),
-                        Name = "KOTLETA",
+                        Name = "Muffin",
                         Quantity = 3,
                         UomType = UomTypes.Pcs,
-                        ReceivedDate = DateTime.UtcNow,
-                        Price = 333
+                        Price = 53
                     },
                     new BakeryProduct
                     {
                         ExpirationDate = DateTime.UtcNow.AddDays(1),
-                        Name = "SUSHI",
+                        Name = "Bread",
                         Quantity = 3,
                         UomType = UomTypes.Pcs,
-                        ReceivedDate = DateTime.UtcNow,
                         Price = 12
                     },
                     new BakeryProduct
                     {
                         ExpirationDate = DateTime.UtcNow.AddDays(1),
-                        Name = "BORSH",
+                        Name = "Miso-soup",
                         Quantity = 3,
                         UomType = UomTypes.Litres,
-                        ReceivedDate = DateTime.UtcNow,
-                        Price = 444
+                        Price = 13
                     },
                 };
 
@@ -631,7 +472,7 @@ namespace Bakeshop.EF
                         Amount = 300,
                         TransactionDate = DateTime.UtcNow.AddDays(-1),
                         UomType = UomTypes.Killograms,
-                        Name = "Meat"
+                        Name = "Bread"
                     },
                     new Sale
                     {
@@ -639,7 +480,7 @@ namespace Bakeshop.EF
                         Amount = 300,
                         TransactionDate = DateTime.UtcNow,
                         UomType = UomTypes.Killograms,
-                        Name = "Meat"
+                        Name = "Bread"
                     },
                     new Sale
                     {
@@ -647,7 +488,7 @@ namespace Bakeshop.EF
                         Amount = 300,
                         TransactionDate = DateTime.UtcNow.AddDays(1),
                         UomType = UomTypes.Killograms,
-                        Name = "Meat"
+                        Name = "Bread"
                     },
                     new Sale
                     {
@@ -655,7 +496,7 @@ namespace Bakeshop.EF
                         Amount = 300,
                         TransactionDate = DateTime.UtcNow.AddDays(-1),
                         UomType = UomTypes.Litres,
-                        Name = "Milk"
+                        Name = "Miso-soup"
                     },
                     new Sale
                     {
@@ -663,7 +504,7 @@ namespace Bakeshop.EF
                         Amount = 300,
                         TransactionDate = DateTime.UtcNow,
                         UomType = UomTypes.Litres,
-                        Name = "Milk"
+                        Name = "Miso-soup"
                     },
                     new Sale
                     {
@@ -671,7 +512,31 @@ namespace Bakeshop.EF
                         Amount = 300,
                         TransactionDate = DateTime.UtcNow.AddDays(1),
                         UomType = UomTypes.Litres,
-                        Name = "Milk"
+                        Name = "Miso-soup"
+                    },
+                    new Sale
+                    {
+                        Quantity = 5,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow.AddDays(-1),
+                        UomType = UomTypes.Pcs,
+                        Name = "Muffin"
+                    },
+                        new Sale
+                    {
+                        Quantity = -10,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow,
+                        UomType = UomTypes.Pcs,
+                        Name = "Muffin"
+                    },
+                    new Sale
+                    {
+                        Quantity = -20,
+                        Amount = 300,
+                        TransactionDate = DateTime.UtcNow.AddDays(1),
+                        UomType = UomTypes.Pcs,
+                        Name = "Muffin"
                     }
                 };
 

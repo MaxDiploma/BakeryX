@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakeshop.Views"
         mc:Ignorable="d"
-        Title="Menu" Height="675" Width="800">
+        Title="Menu" Height="450" Width="800">
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -83,13 +82,5 @@
                       Command="{Binding OpenAnalysisCenter}"/>
       </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="0">
-            <Image Margin="0,5,0,0" Source="../Images/craftcook.png" Height="150"/>
-            <Button HorizontalAlignment="Center" Margin="20"
-                    Width="150"
-                    Height="30"
-                    Content="Craft"
-                    Command="{Binding OpenAnalysisCenter}"/>
-        </StackPanel>
     </Grid>
 </Window>

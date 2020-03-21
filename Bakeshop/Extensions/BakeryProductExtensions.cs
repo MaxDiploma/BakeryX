@@ -15,7 +15,6 @@ namespace Bakeshop.Extensions
                 Name = bakeryProduct.Name,
                 Price = bakeryProduct.Price,
                 Quantity = bakeryProduct.Quantity,
-                ReceivedDate = bakeryProduct.ReceivedDate,
                 UomType = bakeryProduct.UomType
             };
         }

@@ -9,7 +9,7 @@ namespace Bakeshop.DomainModels
 
         public Guid SupplierId { get; set; }
 
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
 
         public DateTime ReceivedDate { get; set; }
 

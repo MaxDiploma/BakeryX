@@ -37,14 +37,17 @@ namespace Bakeshop.ViewModels
         public void MoveToAnalysisCenter()
         {
             var analysisCenter = new AnalysisCenterView();
-            analysisCenter.DataContext = new AnalysisCenterViewModel(From, To)
+            var dataContext = analysisCenter.DataContext as AnalysisCenterViewModel;
+
+            dataContext._from = From;
+            dataContext._to = To;
+            var isNeedToOpen = dataContext.LoadGraphData();
+
+            if (isNeedToOpen)
             {
-                CloseAction = ((AnalysisCenterViewModel)analysisCenter.DataContext).CloseAction
-            };
-
-            analysisCenter.Show();
-
-            CloseAction();
+                analysisCenter.Show();
+                CloseAction();
+            }
         }
 
         public void Dispose()

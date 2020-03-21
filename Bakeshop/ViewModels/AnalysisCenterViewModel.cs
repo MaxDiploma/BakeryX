@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using Bakeshop.EF;
 using Bakeshop.Views;
@@ -19,23 +20,12 @@ namespace Bakeshop.ViewModels
         private IList<DataPoint> _dataPoints;
         private PlotModel _model;
         private readonly BakeshopContext _context;
-        private DateTime _from;
-        private DateTime _to;
-
-
-        public AnalysisCenterViewModel(DateTime from, DateTime to)
-        {
-            _context = new BakeshopContext();
-            LoadGraphData();
-            _from = from;
-            _to = to;
-            GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
-        }
+        public DateTime _from;
+        public DateTime _to;
 
         public AnalysisCenterViewModel()
         {
             _context = new BakeshopContext();
-            LoadGraphData();
             GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
         }
 
@@ -44,6 +34,8 @@ namespace Bakeshop.ViewModels
             get { return _dataPoints; }
             set { Set(ref _dataPoints, value); }
         }
+
+        public bool IsNeedToOpen { get; set; }
 
         public PlotModel Model
         {
@@ -68,42 +60,52 @@ namespace Bakeshop.ViewModels
             CloseAction();
         }
 
-        public async void LoadGraphData()
+        public bool LoadGraphData()
         {
             var plot = new PlotModel();
             plot.Title = "Sales analysis";
             plot.TitleFont = "Helvetica";
             plot.TitleFontSize = 20;
 
-            var sales = await _context.Sales
-                .Where(s => s.TransactionDate >= _from || s.TransactionDate <= _to)
-                .ToListAsync();
+            var sales = _context.Sales
+                .Where(s => s.TransactionDate >= _from && s.TransactionDate < _to)
+                .ToList();
 
-            var grouppedSales = sales.GroupBy(s => s.Name);
-
-            var minDate = DateTimeAxis.ToDouble(sales.Min(s => s.TransactionDate));
-            var maxDate = DateTimeAxis.ToDouble(sales.Max(s => s.TransactionDate));
-
-            var minQuantity = sales.Min(s => s.Quantity) - 50;
-            var maxQuantity = sales.Max(s => s.Quantity) + 50;
-
-            plot.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minQuantity, Maximum = maxQuantity, IsZoomEnabled = false, IsPanEnabled = false });
-            plot.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = minDate, Maximum = maxDate, StringFormat = "M/d", IsZoomEnabled = false, IsPanEnabled = false });
-
-            foreach (var group in grouppedSales)
+            if (sales.Count != 0)
             {
-                var series = new LineSeries();
 
-                foreach (var sale in group)
+                var grouppedSales = sales.GroupBy(s => s.Name);
+
+                var minDate = DateTimeAxis.ToDouble(sales.Min(s => s.TransactionDate));
+                var maxDate = DateTimeAxis.ToDouble(sales.Max(s => s.TransactionDate));
+
+                var minQuantity = sales.Min(s => s.Quantity) - 50;
+                var maxQuantity = sales.Max(s => s.Quantity) + 50;
+
+                plot.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minQuantity, Maximum = maxQuantity, IsZoomEnabled = false, IsPanEnabled = false });
+                plot.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = minDate, Maximum = maxDate, StringFormat = "M/d", IsZoomEnabled = false, IsPanEnabled = false });
+
+                foreach (var group in grouppedSales)
                 {
-                    series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(sale.TransactionDate), sale.Quantity));
-                    series.Title = group.Key;
+                    var series = new LineSeries();
+
+                    foreach (var sale in group)
+                    {
+                        series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(sale.TransactionDate), sale.Quantity));
+                        series.Title = group.Key;
+                    }
+
+                    plot.Series.Add(series);
                 }
 
-                plot.Series.Add(series);
+                Model = plot;
+
+                return true;
             }
 
-            Model = plot;
+            MessageBox.Show("There are no sales for enter dates", "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            return false;
         }
 
         public void Dispose()

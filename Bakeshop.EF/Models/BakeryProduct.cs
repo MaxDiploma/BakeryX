@@ -9,8 +9,6 @@ namespace Bakeshop.EF.Models
 
         public int Price { get; set; }
 
-        public DateTime ReceivedDate { get; set; }
-
         public DateTime ExpirationDate { get; set; }
 
         public UomTypes UomType { get; set; }

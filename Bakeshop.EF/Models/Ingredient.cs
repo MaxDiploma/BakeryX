@@ -7,7 +7,7 @@ namespace Bakeshop.EF.Models
     {
         public string Name { get; set; }
 
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
 
         public UomTypes UomType { get; set; }
 
