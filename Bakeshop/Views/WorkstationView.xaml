@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakeshop.Views"
         mc:Ignorable="d"
-        Title="WorkstationView" Height="750" Width="970">
+        Title="WorkstationView" Height="700" Width="970">
     <Grid>
 
         <Border  Grid.RowSpan="2"
@@ -20,8 +20,9 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition Height="250"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
@@ -42,8 +43,16 @@
                            TextWrapping="Wrap"/>
             </StackPanel>
 
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="CURRENT ORDER"
+                           HorizontalAlignment="Center"
+                           Width="200"
+                           Height="50"
+                           FontSize="25"/>
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <ListView Margin="20,20,20,0" ItemsSource="{Binding BakeryProducts}" x:Name="products"
+                <ListView Margin="20,20,20,48" ItemsSource="{Binding BakeryProducts}" x:Name="products"
           ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
                     <ListView.View>
                         <GridView>
@@ -68,9 +77,9 @@
                 </ListView>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="2">
-                <ListView Margin="20,20,20,0" ItemsSource="{Binding OrderedProducts}" x:Name="orderedProducts"
-          ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
+            <StackPanel Orientation="Horizontal" Grid.Row="3">
+                <ListView Margin="20,20,20,0" ItemsSource="{Binding OrderedProducts}"
+          ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedItem="{Binding SelectedToReturn}" Background="Transparent" BorderThickness="0">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
@@ -81,6 +90,20 @@
                             <GridViewColumn Header="Expiration Date" Width="190" DisplayMemberBinding="{Binding ExpirationDate}" />
                         </GridView>
                     </ListView.View>
+                    <ListView.Resources>
+                        <ContextMenu x:Key="RemoveFromOrder">
+                            <MenuItem Header="Remove from order" Command="{Binding RemoveFromOrderCommand}" CommandParameter="{Binding Me}" Background="WhiteSmoke" />
+                        </ContextMenu>
+                    </ListView.Resources>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding AlwaysTrue}" Value="True">
+                                    <Setter Property="ContextMenu" Value="{StaticResource RemoveFromOrder}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                 </ListView>
             </StackPanel>
 

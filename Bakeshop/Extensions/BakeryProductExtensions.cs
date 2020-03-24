@@ -1,5 +1,7 @@
 ﻿using Bakeshop.DomainModels;
 using Bakeshop.EF.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Bakeshop.Extensions
 {
@@ -32,5 +34,34 @@ namespace Bakeshop.Extensions
                 UomType = bakeryProduct.UomType
             };
         }
+
+        public static ObservableCollection<BakeryProductDomain> ToDomainObservableCollection(this ObservableCollection<BakeryProduct> bakeryProducts)
+        {
+            var updatedItems = bakeryProducts.Select(x => x.ToDomain());
+
+            var colletion = new ObservableCollection<BakeryProductDomain>();
+
+            foreach(var item in updatedItems)
+            {
+                colletion.Add(item);
+            }
+
+            return colletion;
+        }
+
+        public static ObservableCollection<BakeryProduct> ToModelObservableCollection(this ObservableCollection<BakeryProductDomain> bakeryProducts)
+        {
+            var updatedItems = bakeryProducts.Select(x => x.ToModel());
+
+            var colletion = new ObservableCollection<BakeryProduct>();
+
+            foreach (var item in updatedItems)
+            {
+                colletion.Add(item);
+            }
+
+            return colletion;
+        }
+
     }
 }

@@ -11,7 +11,9 @@ namespace Bakeshop.DomainModels
     public class BakeryProductDomain
     {
         private ICommand _openSaleCommand;
+        private ICommand _removeFomOrderCommand;
         public EventHandler<BakeryEventArgs> OnProductOrdered;
+        public EventHandler<BakeryEventArgs> OnProductReturnedToWarehouse;
 
         public Guid Id { get; set; }
 
@@ -29,11 +31,23 @@ namespace Bakeshop.DomainModels
 
         public bool IsSold { get; set; }
 
+        public bool AlwaysTrue { get; set; }
+
+        public BakeryProductDomain Me { get { return this; } }
+
         public ICommand OpenSaleCommand
         {
             get
             {
                 return _openSaleCommand ?? (_openSaleCommand = new BaseCommandHandler(param => OpenSale(param), true));
+            }
+        }
+
+        public ICommand RemoveFromOrderCommand
+        {
+            get
+            {
+                return _removeFomOrderCommand ?? (_removeFomOrderCommand = new BaseCommandHandler(param => RemoveFromOrder(param), true));
             }
         }
 
@@ -46,6 +60,13 @@ namespace Bakeshop.DomainModels
             };
 
             saleView.ShowDialog();
+        }
+
+
+        public void RemoveFromOrder(object bakeryProduct)
+        {
+            var handler = OnProductReturnedToWarehouse;
+            handler?.Invoke(this, new BakeryEventArgs { OrderedBakeryProduct = bakeryProduct as BakeryProductDomain });
         }
     }
 }

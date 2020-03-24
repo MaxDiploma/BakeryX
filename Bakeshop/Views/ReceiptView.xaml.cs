@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bakeshop.ViewModels;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Bakeshop.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для ReceiptView.xaml
-    /// </summary>
     public partial class ReceiptView : Window
     {
         public ReceiptView()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            var viewModel = new ReceiptViewModel();
+            this.DataContext = viewModel;
+            viewModel.PrintView = print;
+            if (viewModel.CloseAction == null)
+                viewModel.CloseAction = new Action(this.Close);
         }
     }
 }

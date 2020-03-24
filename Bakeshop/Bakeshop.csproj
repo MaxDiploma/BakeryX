@@ -115,6 +115,7 @@
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\OrderProductViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="ViewModels\RecipeDetailsViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="ViewModels\SaleBakeryProductViewModel.cs" />

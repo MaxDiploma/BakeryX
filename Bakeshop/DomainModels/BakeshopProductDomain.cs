@@ -52,7 +52,7 @@ namespace Bakeshop.DomainModels
             _context.BakeshopProducts.Remove(bakeshopProduct);
             _context.SaveChanges();
 
-            EventHandler handler = ProductRemoved;
+            var handler = ProductRemoved;
             handler?.Invoke(this, null);
         }
     }

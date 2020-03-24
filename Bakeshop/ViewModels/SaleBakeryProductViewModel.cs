@@ -97,21 +97,10 @@ namespace Bakeshop.ViewModels
 
             product.Quantity -= OrderedQuantity;
 
-            var sale = new Sale
-            {
-                Amount = OrderedQuantity * product.Price,
-                Name = product.Name,
-                TransactionDate = DateTime.UtcNow,
-                UomType = product.UomType,
-                Quantity = OrderedQuantity
-            };
-
             if (product.Quantity == 0)
             {
                 _context.BakeryProducts.Remove(product);
             }
-
-            _context.Sales.Add(sale);
 
             _context.SaveChanges();
 

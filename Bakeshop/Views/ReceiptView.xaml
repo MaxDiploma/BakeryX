@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakeshop.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Invoice" Height="400" Width="550" ResizeMode="NoResize" WindowStyle="None" FontFamily="Roboto" WindowStartupLocation="CenterScreen">
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+    Title="Invoice" Height="600" Width="550" ResizeMode="NoResize" WindowStyle="None" FontFamily="Roboto" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+    </Window.Resources>
     <ScrollViewer>
         <Grid>
             <Border  Grid.RowSpan="3"
@@ -18,29 +21,44 @@
                 </Border.Background>
             </Border>
 
-            <Button HorizontalAlignment="Right" Margin="10" VerticalAlignment="Top">
+            <Button HorizontalAlignment="Right" Margin="10" VerticalAlignment="Top" Command="{Binding PrintCommand}">
                 <materialDesign:PackIcon Kind="Printer" Height="50" Width="50"/>
             </Button>
             <Grid x:Name="print" Margin="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="120"/>
-                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Margin="30" Grid.Row="0">
-                    <TextBlock Text="RECEIPT" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="Black"/>
+                <StackPanel  Margin="30" Grid.Row="0">
+                    <TextBlock Text="RECEIPT" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="Black" Margin="0,0,119,0"/>
                 </StackPanel>
-                <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="20">
-                    <ListView Margin="20,20,20,0" ItemsSource="{Binding OrderedProducts}" x:Name="products"
-          ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedItem="{Binding SelectedItem}" Background="Transparent" BorderThickness="0">
+
+                <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="20,20,20,29">
+                    <ListView Margin="20,20,20,0" ItemsSource="{Binding BakeryProducts}" x:Name="products"
+           SelectedItem="{Binding SelectedItem}" Background="Transparent" BorderThickness="0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="NAME" Width="170" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="NAME" Width="165" DisplayMemberBinding="{Binding Name}" />
                                 <GridViewColumn Header="QUANTITY" Width="140" DisplayMemberBinding="{Binding Quantity}" />
-                                <GridViewColumn Header="AMOUNT" Width="140" DisplayMemberBinding="{Binding Amount}" />
+                                <GridViewColumn Header="AMOUNT" Width="140" DisplayMemberBinding="{Binding Price}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2">
+                    <TextBlock HorizontalAlignment="Center" FontSize="20" Text="{Binding Source={x:Static System:DateTime.Now}, StringFormat=Date: {0:dddd, MMMM dd yyyy}}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="3">
+                    <Button Content="CLOSE RECEIPT"
+                            Width="100"
+                            Margin="0,20,0,0"
+                            Height="50"
+                            Command="{Binding GetToPreviousWindowCommand}"/>
                 </StackPanel>
             </Grid>
         </Grid>
