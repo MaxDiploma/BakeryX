@@ -1,4 +1,6 @@
-﻿using Bakeshop.DomainModels;
+﻿using Bakeshop.CustomEventArgs;
+using Bakeshop.DomainModels;
+using Bakeshop.Extensions;
 using Bakeshop.ViewModels;
 using System;
 using System.Windows;
@@ -24,6 +26,8 @@ namespace Bakeshop.Views
             ListViewItem item = sender as ListViewItem;
             var bakeryProduct = item.Content as BakeryProductDomain;
 
+            bakeryProduct.OnProductOrdered = ((WorkstationViewModel)this.DataContext).UpdateOrderedProducts;
+
             var saleView = new SaleBakeryProductView();
             saleView.DataContext = new SaleBakeryProductViewModel(bakeryProduct.Id as Guid?)
             {
@@ -32,10 +36,17 @@ namespace Bakeshop.Views
 
             saleView.ShowDialog();
 
-            var viewModel = new WorkstationViewModel();
-            this.DataContext = viewModel;
-            if (viewModel.CloseAction == null)
-                viewModel.CloseAction = new Action(this.Close);
+            if (((SaleBakeryProductViewModel)saleView.DataContext).IsNeedToProcessData)
+            {
+                bakeryProduct.OnProductOrdered?.Invoke(this, new BakeryEventArgs { OrderedBakeryProduct = ((SaleBakeryProductViewModel)saleView.DataContext).OrderedBakeryProduct.ToDomain() });
+
+                var viewModel = new WorkstationViewModel(((WorkstationViewModel)this.DataContext).OrderedProducts);
+                this.DataContext = viewModel;
+                if (viewModel.CloseAction == null)
+                    viewModel.CloseAction = new Action(this.Close);
+
+                ((SaleBakeryProductViewModel)saleView.DataContext).IsNeedToProcessData = false;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakeshop.Views"
         mc:Ignorable="d"
-        Title="WorkstationView" Height="450" Width="970">
+        Title="WorkstationView" Height="750" Width="970">
     <Grid>
 
         <Border  Grid.RowSpan="2"
@@ -21,7 +21,9 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
-                <RowDefinition Height="300"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal" Grid.Row="0">
@@ -40,30 +42,7 @@
                            TextWrapping="Wrap"/>
             </StackPanel>
 
-            <!--<StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Width="150" Height="30" 
-                            VerticalAlignment="Top" 
-                            Content="Filter by name"
-                            Margin="30,100,0,0"
-                            FontSize="15"
-                            Command="{Binding SortByNameCommand}"/>
-
-                <Button Width="150" Height="30" 
-                            VerticalAlignment="Top" 
-                            Content="Filter by quantity"
-                            Margin="30,100,0,0"
-                            FontSize="15"
-                            Command="{Binding SortByQuantityCommand}"/>
-
-                <Button Width="150" Height="30" 
-                            VerticalAlignment="Top" 
-                            Content="Filter by date"
-                            Margin="30,100,0,0"
-                            FontSize="15"
-                            Command="{Binding SortByDateCommand}"/>
-            </StackPanel>-->
-
-            <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <ListView Margin="20,20,20,0" ItemsSource="{Binding BakeryProducts}" x:Name="products"
           ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
                     <ListView.View>
@@ -89,25 +68,30 @@
                 </ListView>
             </StackPanel>
 
-            <!--<StackPanel Grid.Row="1" Orientation="Horizontal">
-                <TextBox Text="Search"
-                             Background="Transparent"
-                             Foreground="Black"
-                             FontWeight="Light"
-                             FontFamily="Helvetica"
-                             FontSize="22"
-                             x:Name="SearchField"
-                             VerticalContentAlignment="Center"
-                             Width="203"
-                             Margin="30,5,0,5"
-                             BorderThickness="1"
-                             BorderBrush="Black"/>
-                <Button Width="70" Height="40"
-                            Content="&#x1F50E;"
-                            Margin="30,5,0,5"
-                            Command="{Binding SearchCommand}"
-                            CommandParameter="{Binding ElementName=SearchField}"/>
-            </StackPanel>-->
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <ListView Margin="20,20,20,0" ItemsSource="{Binding OrderedProducts}" x:Name="orderedProducts"
+          ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
+                            <GridViewColumn Header="Quantity" Width="100" DisplayMemberBinding="{Binding Quantity}" />
+                            <GridViewColumn Header="Unit of measure" Width="190" DisplayMemberBinding="{Binding UomType}" />
+                            <GridViewColumn Header="Received date" Width="190" DisplayMemberBinding="{Binding ReceivedDate}" />
+                            <GridViewColumn Header="Expiration Date" Width="190" DisplayMemberBinding="{Binding ExpirationDate}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4">
+                <Button Content="Order"
+                        Width="200"
+                        Height="50"
+                        FontSize="30"
+                        Margin="0,20,0,0"
+                        Command="{Binding ProcessOrderedItemsCommand}"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

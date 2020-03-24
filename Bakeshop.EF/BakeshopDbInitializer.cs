@@ -184,7 +184,8 @@ namespace Bakeshop.EF
                     },
                     Description = LoremIpsum,
                     Name = "Cutlet",
-                    RecipeType = RecipeTypes.Traditional
+                    RecipeType = RecipeTypes.Traditional,
+                    Price = 300
                 },
                 new Formula
                 {
@@ -212,7 +213,8 @@ namespace Bakeshop.EF
                     },
                     Description = LoremIpsum,
                     Name = "Omelette",
-                    RecipeType = RecipeTypes.Asian
+                    RecipeType = RecipeTypes.Asian,
+                    Price = 150
                 },
                 new Formula
                 {
@@ -225,7 +227,7 @@ namespace Bakeshop.EF
                             {
                                 Name = "Eggs",
                                 Quantity = 10,
-                                UomType = UomTypes.Gramms
+                                UomType = UomTypes.Pcs
                             }
                         },
                           new FormulaIngredient
@@ -240,7 +242,8 @@ namespace Bakeshop.EF
                     },
                     Description = LoremIpsum,
                     Name = "Bread",
-                    RecipeType = RecipeTypes.Vegan
+                    RecipeType = RecipeTypes.Vegan,
+                    Price = 100
                 },
                 new Formula
                 {
@@ -267,7 +270,8 @@ namespace Bakeshop.EF
                     },
                     Description = LoremIpsum,
                     Name = "Sandwich",
-                    RecipeType = RecipeTypes.Traditional
+                    RecipeType = RecipeTypes.Traditional,
+                    Price = 170
                 },
                 new Formula
                 {
@@ -303,7 +307,8 @@ namespace Bakeshop.EF
                     },
                     Description = LoremIpsum,
                     Name = "Miso-soup",
-                    RecipeType = RecipeTypes.Traditional
+                    RecipeType = RecipeTypes.Traditional,
+                    Price = 400
                 },
                 new Formula
                 {
@@ -339,7 +344,8 @@ namespace Bakeshop.EF
                     },
                     Description = LoremIpsum,
                     Name = "Muffin",
-                    RecipeType = RecipeTypes.Traditional
+                    RecipeType = RecipeTypes.Traditional,
+                    Price = 350
                 },
                  new Formula
                 {
@@ -375,7 +381,8 @@ namespace Bakeshop.EF
                     },
                     Description = LoremIpsum,
                     Name = "Toasts",
-                    RecipeType = RecipeTypes.Traditional
+                    RecipeType = RecipeTypes.Traditional,
+                    Price = 50
                 }
             };
 

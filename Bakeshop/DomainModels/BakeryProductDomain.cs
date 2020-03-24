@@ -1,5 +1,6 @@
 ﻿using Bakeshop.CommandHandler;
 using Bakeshop.Common.Enums;
+using Bakeshop.CustomEventArgs;
 using Bakeshop.ViewModels;
 using Bakeshop.Views;
 using System;
@@ -10,6 +11,7 @@ namespace Bakeshop.DomainModels
     public class BakeryProductDomain
     {
         private ICommand _openSaleCommand;
+        public EventHandler<BakeryEventArgs> OnProductOrdered;
 
         public Guid Id { get; set; }
 

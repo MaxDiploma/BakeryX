@@ -2,6 +2,7 @@
 using Bakeshop.EF;
 using Bakeshop.EF.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -23,6 +24,7 @@ namespace Bakeshop.ViewModels
         {
             _context = new BakeshopContext();
             LoadBakeryProduct(bakeryProductId);
+            GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
         }
 
         public SaleBakeryProductViewModel()
@@ -30,7 +32,19 @@ namespace Bakeshop.ViewModels
             _context = new BakeshopContext();
         }
 
+        public ICommand GetToPreviousWindowCommand { get; set; }
+
+        public BakeryProduct ShopBakeryProduct { get; set; }
+
+        public BakeryProduct OrderedBakeryProduct { get; set; }
+
+        public bool IsNeedToProcessData { get; set; }
+
+        public Sale Sale { get; set; }
+
         public Action CloseAction { get; set; }
+
+        public int OrderedQuantity { get; set; }
 
         public ICommand SaleCommand
         {
@@ -54,44 +68,57 @@ namespace Bakeshop.ViewModels
                 var bakeryProduct = await _context.BakeryProducts
                     .FirstOrDefaultAsync(f => f.Id == bakeryProductId);
 
+                ShopBakeryProduct = bakeryProduct;
+
                 _bakeryProduct = bakeryProduct;
 
                 BakeryProducts.Add(bakeryProduct);
             }
         }
 
+        public void GetToPreviousWindow()
+        {
+            CloseAction();
+        }
+
         public void SaleBakeryProduct(object param)
         {
             var textBox = param as TextBox;
             var orderedQuantity = int.Parse(textBox.Text);
-
-            var sale = new Sale
-            {
-                Amount = orderedQuantity * _bakeryProduct.Price,
-                Name = _bakeryProduct.Name,
-                TransactionDate = DateTime.UtcNow,
-                UomType = _bakeryProduct.UomType,
-                Quantity = orderedQuantity
-            };
-
-            _context.Sales.Add(sale);
+            OrderedQuantity = orderedQuantity;
 
             var product = _context.BakeryProducts.FirstOrDefault(bk => bk.Id == _bakeryProduct.Id);
 
             if (orderedQuantity > product.Quantity)
             {
-                MessageBox.Show("You cannot sell more than you have", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("You cannot sell more than you have", "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            product.Quantity -= orderedQuantity;
+            product.Quantity -= OrderedQuantity;
+
+            var sale = new Sale
+            {
+                Amount = OrderedQuantity * product.Price,
+                Name = product.Name,
+                TransactionDate = DateTime.UtcNow,
+                UomType = product.UomType,
+                Quantity = OrderedQuantity
+            };
 
             if (product.Quantity == 0)
             {
                 _context.BakeryProducts.Remove(product);
             }
 
+            _context.Sales.Add(sale);
+
             _context.SaveChanges();
+
+            OrderedBakeryProduct = ShopBakeryProduct;
+            OrderedBakeryProduct.Quantity = orderedQuantity;
+
+            IsNeedToProcessData = true;
 
             CloseAction();
         }

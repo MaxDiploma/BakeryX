@@ -5,6 +5,7 @@
         Killograms,
         Pcs,
         Litres,
-        Gramms
+        Gramms,
+        Empty
     }
 }

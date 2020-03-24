@@ -85,7 +85,7 @@
                            Height="35" HorizontalAlignment="Center" Width="115" Text="Quantity"/>
                     <TextBox Margin="0,20,0,0"
                 Text="{Binding Quantity}"
-                Width="200"
+                Width="220"
                 Height="30"
                 FontSize="16"
                 Background="Transparent"
@@ -96,14 +96,14 @@
             </StackPanel>
 
             <StackPanel Grid.Row="4">
-                <Button Width="200" Height="60" 
+                <Button Height="60" 
                             VerticalAlignment="Top" 
                             Content="Craft"
                             FontSize="35"
-                            Margin="0,30,0,0"
+                            Margin="221,30,206,0"
                             Command="{Binding CraftProductCommand}"/>
             </StackPanel>
-      
+
         </Grid>
     </Grid>
 </Window>

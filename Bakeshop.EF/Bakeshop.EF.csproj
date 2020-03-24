@@ -105,6 +105,18 @@
     <Compile Include="Migrations\202003191922025_ChangedToDouble1.designer.cs">
       <DependentUpon>202003191922025_ChangedToDouble1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003211301460_AddedPriceToFormula.cs" />
+    <Compile Include="Migrations\202003211301460_AddedPriceToFormula.designer.cs">
+      <DependentUpon>202003211301460_AddedPriceToFormula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003241408073_AddedBasketItem.cs" />
+    <Compile Include="Migrations\202003241408073_AddedBasketItem.designer.cs">
+      <DependentUpon>202003241408073_AddedBasketItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003241743481_RemovedBasketItem.cs" />
+    <Compile Include="Migrations\202003241743481_RemovedBasketItem.designer.cs">
+      <DependentUpon>202003241743481_RemovedBasketItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BakeryProduct.cs" />
     <Compile Include="Models\BakeshopProduct.cs" />
@@ -168,6 +180,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003191922025_ChangedToDouble1.resx">
       <DependentUpon>202003191922025_ChangedToDouble1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003211301460_AddedPriceToFormula.resx">
+      <DependentUpon>202003211301460_AddedPriceToFormula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003241408073_AddedBasketItem.resx">
+      <DependentUpon>202003241408073_AddedBasketItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003241743481_RemovedBasketItem.resx">
+      <DependentUpon>202003241743481_RemovedBasketItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,8 @@
 ﻿using Bakeshop.CommandHandler;
+using Bakeshop.CustomEventArgs;
 using Bakeshop.DomainModels;
 using Bakeshop.EF;
+using Bakeshop.EF.Models;
 using Bakeshop.Extensions;
 using Bakeshop.Views;
 using GalaSoft.MvvmLight;
@@ -17,20 +19,38 @@ namespace Bakeshop.ViewModels
     public class WorkstationViewModel : ObservableObject, IDisposable
     {
         private BakeshopContext _context;
-        private ObservableCollection<BakeryProductDomain> _bakeryProduct;
+        private ObservableCollection<BakeryProductDomain> _bakeryProducts;
+        private ObservableCollection<BakeryProduct> _orderedProducts;
         private ICommand _searchCommand;
 
         public WorkstationViewModel()
         {
             _context = new BakeshopContext();
             GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
+            ProcessOrderedItemsCommand = new RelayCommand(ProcessOrderedItems);
             LoadProducts();
+            OrderedProducts = new ObservableCollection<BakeryProduct>();
+        }
+
+        public WorkstationViewModel(ObservableCollection<BakeryProduct> orderedProducts)
+        {
+            _context = new BakeshopContext();
+            GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
+            ProcessOrderedItemsCommand = new RelayCommand(ProcessOrderedItems);
+            LoadProducts();
+            OrderedProducts = orderedProducts;
         }
 
         public ObservableCollection<BakeryProductDomain> BakeryProducts
         {
-            get { return _bakeryProduct; }
-            set { Set(ref _bakeryProduct, value); }
+            get { return _bakeryProducts; }
+            set { Set(ref _bakeryProducts, value); }
+        }
+
+        public ObservableCollection<BakeryProduct> OrderedProducts
+        {
+            get { return _orderedProducts; }
+            set { Set(ref _orderedProducts, value); }
         }
 
         public ICommand GetToPreviousWindowCommand { get; set; }
@@ -38,6 +58,8 @@ namespace Bakeshop.ViewModels
         public ICommand PreviousPageCommand { get; set; }
 
         public ICommand NextPageCommand { get; set; }
+
+        public ICommand ProcessOrderedItemsCommand { get; set; }
 
         public Action CloseAction { get; set; }
 
@@ -58,8 +80,26 @@ namespace Bakeshop.ViewModels
 
             foreach (var bakeryProduct in bakeryProducts)
             {
+                var domainBakeryProduct = bakeryProduct.ToDomain();
+                domainBakeryProduct.OnProductOrdered += UpdateOrderedProducts;
+
                 BakeryProducts.Add(bakeryProduct.ToDomain());
             }
+        }
+
+        public void UpdateOrderedProducts(object sender, BakeryEventArgs args)
+        {
+            var orderedProduct = args.OrderedBakeryProduct.ToModel();
+            OrderedProducts.Add(orderedProduct);
+
+            _context.SaveChanges();
+
+            RaisePropertyChanged("OrderedProducts");
+        }
+
+        public void ProcessOrderedItems()
+        {
+
         }
 
         private async void SearchHandler(object param)

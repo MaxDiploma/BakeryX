@@ -149,8 +149,6 @@ namespace Bakeshop.ViewModels
 
         public void GetToPreviousWindow()
         {
-            var suppliers = new SuppliersView();
-            suppliers.Show();
             CloseAction();
         }
 

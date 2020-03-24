@@ -18,5 +18,19 @@ namespace Bakeshop.Extensions
                 UomType = bakeryProduct.UomType
             };
         }
+
+        public static BakeryProduct ToModel(this BakeryProductDomain bakeryProduct)
+        {
+            return new BakeryProduct
+            {
+                ExpirationDate = bakeryProduct.ExpirationDate,
+                Id = bakeryProduct.Id,
+                IsSold = bakeryProduct.IsSold,
+                Name = bakeryProduct.Name,
+                Price = bakeryProduct.Price,
+                Quantity = bakeryProduct.Quantity,
+                UomType = bakeryProduct.UomType
+            };
+        }
     }
 }
