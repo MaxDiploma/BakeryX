@@ -92,5 +92,14 @@
                       Command="{Binding OpenSalesCommand}"/>
         </StackPanel>
 
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Image Margin="0,5,0,0" Source="../Images/logout.png" Height="150"/>
+            <Button HorizontalAlignment="Center" Margin="20"
+                      Width="100"
+                      Height="30"
+                      Content="Logout"
+                      Command="{Binding LogoutCommand}"/>
+        </StackPanel>
+
     </Grid>
 </Window>

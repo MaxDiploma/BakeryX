@@ -90,9 +90,14 @@ namespace Bakeshop.ViewModels
                 {
                     var series = new LineSeries();
 
-                    foreach (var sale in group)
+                    var grouppedByDate = group.GroupBy(x => x.TransactionDate.Day);
+
+                    foreach (var groupDate in grouppedByDate)
                     {
-                        series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(sale.TransactionDate), sale.Quantity));
+                        var sumForDate = groupDate.Sum(x => x.Quantity);
+                        var date = groupDate.FirstOrDefault().TransactionDate;
+
+                        series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), sumForDate));
                         series.Title = group.Key;
                     }
 

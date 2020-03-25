@@ -117,6 +117,10 @@
     <Compile Include="Migrations\202003241743481_RemovedBasketItem.designer.cs">
       <DependentUpon>202003241743481_RemovedBasketItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003251751214_EmployeePassword.cs" />
+    <Compile Include="Migrations\202003251751214_EmployeePassword.designer.cs">
+      <DependentUpon>202003251751214_EmployeePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BakeryProduct.cs" />
     <Compile Include="Models\BakeshopProduct.cs" />
@@ -189,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003241743481_RemovedBasketItem.resx">
       <DependentUpon>202003241743481_RemovedBasketItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003251751214_EmployeePassword.resx">
+      <DependentUpon>202003251751214_EmployeePassword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

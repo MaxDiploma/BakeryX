@@ -6,6 +6,7 @@
         Trainee,
         Manager,
         Owner,
-        Supplier
+        Supplier,
+        Employee
     }
 }

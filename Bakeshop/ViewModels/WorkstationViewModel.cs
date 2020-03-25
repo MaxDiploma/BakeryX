@@ -149,7 +149,7 @@ namespace Bakeshop.ViewModels
             {
                 var sales = new List<Sale>();
 
-                foreach(var item in OrderedProducts)
+                foreach (var item in OrderedProducts)
                 {
                     var sale = new Sale
                     {
@@ -205,9 +205,17 @@ namespace Bakeshop.ViewModels
 
         public void GetToPreviousWindow()
         {
-            var menu = new MenuView();
-            menu.Show();
-            CloseAction();
+            if (OrderedProducts.Any())
+            {
+                MessageBox.Show("You cannot leave this window while ordered products is not empty", "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            else
+            {
+                var menu = new MenuView();
+                menu.Show();
+                CloseAction();
+            }
         }
 
         public void Dispose()

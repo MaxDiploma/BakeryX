@@ -3,6 +3,7 @@ using Bakeshop.Common.Enums;
 using Bakeshop.EF;
 using Bakeshop.EF.Models;
 using Bakeshop.Extensions;
+using Bakeshop.StaticResources;
 using Bakeshop.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -23,6 +25,7 @@ namespace Bakeshop.ViewModels
         private bool _isOrderedByDescendingLastname;
         private bool _isOrderedByDescendingPosition;
         private ICommand _searchCommand;
+        private Visibility _isUserAdminOrOwnerVisability;
 
         public EmployeeViewModel()
         {
@@ -31,6 +34,12 @@ namespace Bakeshop.ViewModels
             SortByLastnameCommand = new RelayCommand(SortByLastName);
             SortByPositionCommand = new RelayCommand(SortByPosition);
             GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
+            AddNewEmployeeCommand = new RelayCommand(AddNewEmployee);
+
+            CurrentUser = CurrentUserManagment.GetCurrentUser();
+            var IsAdminOrOwner = CurrentUser.Position == Positions.Owner || CurrentUser.Position == Positions.Manager ? true : false;
+            IsAdminOrOwnerVisability = IsAdminOrOwner ? Visibility.Visible : Visibility.Hidden;
+
             LoadEmployees();
         }
 
@@ -38,6 +47,12 @@ namespace Bakeshop.ViewModels
         {
             get { return _employees; }
             set { Set(ref _employees, value); }
+        }
+
+        public Visibility IsAdminOrOwnerVisability
+        {
+            get { return _isUserAdminOrOwnerVisability; }
+            set { Set(ref _isUserAdminOrOwnerVisability, value); }
         }
 
         public ICommand GetToPreviousWindowCommand { get; set; }
@@ -48,7 +63,11 @@ namespace Bakeshop.ViewModels
 
         public ICommand SortByPositionCommand { get; set; }
 
+        public ICommand AddNewEmployeeCommand { get; set; }
+
         public Action CloseAction { get; set; }
+
+        public BakeshopWorker CurrentUser { get; set; }
 
         public ICommand SearchCommand
         {
@@ -68,6 +87,14 @@ namespace Bakeshop.ViewModels
             {
                 Employees.Add(employee);
             }
+        }
+
+        public void AddNewEmployee()
+        {
+            var newEmployee = new NewEmployeeView();
+            newEmployee.ShowDialog();
+            _context = new BakeshopContext();
+            LoadEmployees();
         }
 
         private void SortByFirstname()

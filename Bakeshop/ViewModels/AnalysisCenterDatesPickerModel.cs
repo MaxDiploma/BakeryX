@@ -16,6 +16,7 @@ namespace Bakeshop.ViewModels
             From = DateTime.UtcNow;
             To = DateTime.UtcNow;
             OpenAnalasysCenterCommand = new RelayCommand(MoveToAnalysisCenter);
+            GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
         }
 
         public DateTime From
@@ -34,6 +35,8 @@ namespace Bakeshop.ViewModels
 
         public ICommand OpenAnalasysCenterCommand { get; set; }
 
+        public ICommand GetToPreviousWindowCommand { get; set; }
+
         public void MoveToAnalysisCenter()
         {
             var analysisCenter = new AnalysisCenterView();
@@ -48,6 +51,13 @@ namespace Bakeshop.ViewModels
                 analysisCenter.Show();
                 CloseAction();
             }
+        }
+
+        public void GetToPreviousWindow()
+        {
+            var menu = new MenuView();
+            menu.Show();
+            CloseAction();
         }
 
         public void Dispose()

@@ -1,4 +1,5 @@
-﻿using Bakeshop.Views;
+﻿using Bakeshop.StaticResources;
+using Bakeshop.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
@@ -18,9 +19,12 @@ namespace Bakeshop.ViewModels
             OpenWorkstationCommand = new RelayCommand(MoveToWorkstation);
             OpenAnalysisCenter = new RelayCommand(MoveToAnalysisCenter);
             OpenSalesCommand = new RelayCommand(MoveToSales);
+            LogoutCommand = new RelayCommand(Logout);
         }
 
         public ICommand OpenEmployeesCommand { get; private set; }
+
+        public ICommand LogoutCommand { get; private set; }
 
         public ICommand OpenWarehouseCommand { get; private set; }
 
@@ -40,6 +44,14 @@ namespace Bakeshop.ViewModels
         {
             var employees = new EmployeeView();
             employees.Show();
+            CloseAction();
+        }
+
+        private void Logout()
+        {
+            var login = new LoginView();
+            login.Show();
+            CurrentUserManagment.ClearCurrentUser();
             CloseAction();
         }
 

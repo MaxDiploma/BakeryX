@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakeshop.Views"
         mc:Ignorable="d"
-        Title="Suppliers" Height="450" Width="1000">
+        Title="Suppliers" Height="450" Width="1100">
     <Grid>
 
         <Border  Grid.RowSpan="2"
@@ -75,11 +75,13 @@
                             <GridViewColumn Header="Email" Width="190" DisplayMemberBinding="{Binding Email}" />
                             <GridViewColumn Header="Position" Width="132" DisplayMemberBinding="{Binding Position}" />
                             <GridViewColumn Header="Phone number" Width="132" DisplayMemberBinding="{Binding Phone}" />
-                            <GridViewColumn Header="Products" Width="132" DisplayMemberBinding="{Binding Products}" />
+                            <GridViewColumn Header="Products" Width="232" DisplayMemberBinding="{Binding Products}" />
                         </GridView>
                     </ListView.View>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
                             <EventSetter Event="MouseDoubleClick" Handler="listViewItem_MouseDoubleClick" />
                         </Style>
                     </ListView.ItemContainerStyle>

@@ -46,6 +46,12 @@
                                 <GridViewColumn Header="AMOUNT" Width="140" DisplayMemberBinding="{Binding Price}" />
                             </GridView>
                         </ListView.View>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                     </ListView>
                 </StackPanel>
 

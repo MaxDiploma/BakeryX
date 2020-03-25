@@ -29,7 +29,8 @@ namespace Bakeshop.EF
                         Position = Positions.Cook,
                         Age = 23,
                         Email = "name1@test.com",
-                        Phone = "(111)-111-111-11"
+                        Phone = "(111)-111-111-11",
+                        Password = "qwerty1"
                     },
 
                     new BakeshopWorker
@@ -39,7 +40,8 @@ namespace Bakeshop.EF
                         Position = Positions.Trainee,
                         Age = 22,
                         Email = "name2@test.com",
-                        Phone = "(111)-111-111-11"
+                        Phone = "(111)-111-111-11",
+                        Password = "qwerty2"
                     },
 
                     new BakeshopWorker
@@ -49,7 +51,8 @@ namespace Bakeshop.EF
                         Position = Positions.Manager,
                         Age = 43,
                         Email = "name3@test.com",
-                        Phone = "(111)-111-111-11"
+                        Phone = "(111)-111-111-11",
+                        Password = "qwerty3"
                     },
 
                     new BakeshopWorker
@@ -59,7 +62,8 @@ namespace Bakeshop.EF
                         Position = Positions.Owner,
                         Age = 11,
                         Email = "name4@test.com",
-                        Phone = "(111)-111-111-11"
+                        Phone = "(111)-111-111-11",
+                        Password = "qwerty4"
                     }
             };
 

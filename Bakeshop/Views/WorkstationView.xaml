@@ -72,6 +72,8 @@
                                 </DataTrigger>
                             </Style.Triggers>
                             <EventSetter Event="MouseDoubleClick" Handler="listViewItem_MouseDoubleClick" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
@@ -102,6 +104,8 @@
                                     <Setter Property="ContextMenu" Value="{StaticResource RemoveFromOrder}" />
                                 </DataTrigger>
                             </Style.Triggers>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
