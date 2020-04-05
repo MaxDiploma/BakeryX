@@ -62,6 +62,22 @@
                             Margin="30,100,0,0"
                             FontSize="15"
                             Command="{Binding SortByPositionCommand}"/>
+
+                <Button Width="150" Height="30" 
+                            VerticalAlignment="Top" 
+                            Content="Add new supplier"
+                            Margin="30,100,0,0"
+                            FontSize="15"
+                            Visibility="{Binding IsAdminOrOwnerVisability}"
+                            Command="{Binding AddNewSupplierCommand}"/>
+
+                <Button Width="150" Height="30" 
+                            VerticalAlignment="Top" 
+                            Content="Edit supplier"
+                            Margin="30,100,0,0"
+                            FontSize="15"
+                            Visibility="{Binding IsAdminOrOwnerVisability}"
+                            Command="{Binding SortByPositionCommand}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Row="2">
@@ -78,11 +94,21 @@
                             <GridViewColumn Header="Products" Width="232" DisplayMemberBinding="{Binding Products}" />
                         </GridView>
                     </ListView.View>
+                    <ListView.Resources>
+                        <ContextMenu x:Key="RemoveSupplier">
+                            <MenuItem Header="Remove supplier" Command="{Binding RemoveUserCommand}" CommandParameter="{Binding Id}" Background="WhiteSmoke" />
+                        </ContextMenu>
+                    </ListView.Resources>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
                             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
                             <EventSetter Event="MouseDoubleClick" Handler="listViewItem_MouseDoubleClick" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsOwnerOrAdmin}" Value="True">
+                                    <Setter Property="ContextMenu" Value="{StaticResource RemoveSupplier}" />
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>

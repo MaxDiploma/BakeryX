@@ -169,20 +169,26 @@
     <Compile Include="DomainModels\BakeryProductDomain.cs" />
     <Compile Include="DomainModels\BakeshopProductDomain.cs" />
     <Compile Include="DomainModels\ComboData.cs" />
+    <Compile Include="DomainModels\EmployeeDomain.cs" />
     <Compile Include="DomainModels\RecipeDomain.cs" />
     <Compile Include="DomainModels\SupplierDomain.cs" />
     <Compile Include="Extensions\BakeryProductExtensions.cs" />
     <Compile Include="Extensions\BakeshopProductExtensions.cs" />
+    <Compile Include="Extensions\EmployeeExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Extensions\RecipeExtensions.cs" />
     <Compile Include="Extensions\SupplierExtensions.cs" />
     <Compile Include="StaticResources\CurrentUserManagment.cs" />
+    <Compile Include="ViewModels\AddProductOrIngredientViewModel.cs" />
     <Compile Include="ViewModels\AnalysisCenterDatesPickerModel.cs" />
     <Compile Include="ViewModels\AnalysisCenterViewModel.cs" />
+    <Compile Include="ViewModels\EditEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\EditSupplierViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\NewEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\NewSupplierViewModel.cs" />
     <Compile Include="ViewModels\OrderProductViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="ViewModels\RecipeDetailsViewModel.cs" />
@@ -192,11 +198,20 @@
     <Compile Include="ViewModels\SuppliersViewModel.cs" />
     <Compile Include="ViewModels\WarehouseViewModel.cs" />
     <Compile Include="ViewModels\WorkstationViewModel.cs" />
+    <Compile Include="Views\AddProductOrIngredientView.xaml.cs">
+      <DependentUpon>AddProductOrIngredientView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AnalysisCenterDatesPicker.xaml.cs">
       <DependentUpon>AnalysisCenterDatesPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AnalysisCenterView.xaml.cs">
       <DependentUpon>AnalysisCenterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditEmployeeView.xaml.cs">
+      <DependentUpon>EditEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditSupplierView.xaml.cs">
+      <DependentUpon>EditSupplierView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
@@ -209,6 +224,9 @@
     </Compile>
     <Compile Include="Views\NewEmployeeView.xaml.cs">
       <DependentUpon>NewEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewSupplierView.xaml.cs">
+      <DependentUpon>NewSupplierView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderProductView.xaml.cs">
       <DependentUpon>OrderProductView.xaml</DependentUpon>
@@ -283,11 +301,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddProductOrIngredientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AnalysisCenterDatesPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AnalysisCenterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditSupplierView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,6 +334,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewSupplierView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

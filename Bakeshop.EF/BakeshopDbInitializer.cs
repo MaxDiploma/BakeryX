@@ -71,15 +71,15 @@ namespace Bakeshop.EF
             }
 
 
-            var meat = new Product { Name = "Meat" };
-            var milk = new Product { Name = "Milk" };
-            var eggs = new Product { Name = "Eggs" };
-            var water = new Product { Name = "Water" };
-            var sausages = new Product { Name = "Sausages" };
-            var butter = new Product { Name = "Butter" };
-            var flour = new Product { Name = "Flour" };
-            var sugar = new Product { Name = "Sugar" };
-            var potato = new Product { Name = "Potato" };
+            var meat = new Product { Name = "Meat", Uom = UomTypes.Killograms };
+            var milk = new Product { Name = "Milk", Uom = UomTypes.Litres };
+            var eggs = new Product { Name = "Eggs", Uom = UomTypes.Pcs };
+            var water = new Product { Name = "Water", Uom = UomTypes.Litres };
+            var sausages = new Product { Name = "Sausages", Uom = UomTypes.Killograms };
+            var butter = new Product { Name = "Butter", Uom = UomTypes.Killograms };
+            var flour = new Product { Name = "Flour", Uom = UomTypes.Killograms };
+            var sugar = new Product { Name = "Sugar", Uom = UomTypes.Killograms };
+            var potato = new Product { Name = "Potato", Uom = UomTypes.Killograms };
 
             var supplier1 = new Supplier
             {

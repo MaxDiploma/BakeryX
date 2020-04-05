@@ -3,6 +3,7 @@ using Bakeshop.Common.Enums;
 using Bakeshop.DomainModels;
 using Bakeshop.EF;
 using Bakeshop.Extensions;
+using Bakeshop.StaticResources;
 using Bakeshop.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -22,6 +24,7 @@ namespace Bakeshop.ViewModels
         private bool _isOrderedByDescendingFirstname;
         private bool _isOrderedByDescendingLastname;
         private bool _isOrderedByDescendingPosition;
+        private Visibility _isUserAdminOrOwnerVisability;
         private ICommand _searchCommand;
 
         public SuppliersViewModel()
@@ -31,6 +34,12 @@ namespace Bakeshop.ViewModels
             SortByLastnameCommand = new RelayCommand(SortByLastName);
             SortByPositionCommand = new RelayCommand(SortByPosition);
             GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
+            AddNewSupplierCommand = new RelayCommand(AddNewSupplier);
+
+            var currentUser = CurrentUserManagment.GetCurrentUser();
+            var IsAdminOrOwner = currentUser.Position == Positions.Owner || currentUser.Position == Positions.Manager ? true : false;
+            IsAdminOrOwnerVisability = IsAdminOrOwner ? Visibility.Visible : Visibility.Hidden;
+
             LoadEmployees();
         }
 
@@ -40,6 +49,12 @@ namespace Bakeshop.ViewModels
             set { Set(ref _employees, value); }
         }
 
+        public Visibility IsAdminOrOwnerVisability
+        {
+            get { return _isUserAdminOrOwnerVisability; }
+            set { Set(ref _isUserAdminOrOwnerVisability, value); }
+        }
+
         public ICommand GetToPreviousWindowCommand { get; set; }
 
         public ICommand SortByFirstnameCommand { get; set; }
@@ -47,6 +62,8 @@ namespace Bakeshop.ViewModels
         public ICommand SortByLastnameCommand { get; set; }
 
         public ICommand SortByPositionCommand { get; set; }
+
+        public ICommand AddNewSupplierCommand { get; set; }
 
         public Action CloseAction { get; set; }
 
@@ -59,6 +76,18 @@ namespace Bakeshop.ViewModels
             }
         }
 
+        public void AddNewSupplier()
+        {
+            var newSupplier = new NewSupplierView();
+            newSupplier.DataContext = new NewSupplierViewModel()
+            {
+                CloseAction = ((NewSupplierViewModel)newSupplier.DataContext).CloseAction
+            };
+            newSupplier.ShowDialog();
+            _context = new BakeshopContext();
+            LoadEmployees();
+        }
+
         public async void LoadEmployees()
         {
             Employees = new ObservableCollection<SupplierDomain>();
@@ -67,8 +96,16 @@ namespace Bakeshop.ViewModels
 
             foreach (var employee in employees)
             {
-                Employees.Add(employee.ToDomain());
+                var supplier = employee.ToDomain();
+                supplier.OnSupplierRemoved += ReloadSuppliers;
+                Employees.Add(supplier);
             }
+        }
+
+        public void ReloadSuppliers(object sender, EventArgs e)
+        {
+            _context = new BakeshopContext();
+            LoadEmployees();
         }
 
         private void SortByFirstname()

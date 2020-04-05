@@ -42,39 +42,47 @@
             </StackPanel>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Width="150" Height="30" 
+                <Button Width="132" Height="30" 
                             VerticalAlignment="Top" 
                             Content="Filter by firstname"
                             Margin="30,100,0,0"
                             FontSize="15"
                             Command="{Binding SortByFirstnameCommand}"/>
 
-                <Button Width="150" Height="30" 
+                <Button Width="140" Height="30" 
                             VerticalAlignment="Top" 
                             Content="Filter by lastname"
                             Margin="30,100,0,0"
                             FontSize="15"
                             Command="{Binding SortByLastnameCommand}"/>
 
-                <Button Width="150" Height="30" 
+                <Button Width="125" Height="30" 
                             VerticalAlignment="Top" 
                             Content="Filter by position"
                             Margin="30,100,0,0"
                             FontSize="15"
                             Command="{Binding SortByPositionCommand}"/>
 
-                <Button Width="150" Height="30" 
+                <Button Width="140" Height="30" 
                             VerticalAlignment="Top" 
                             Content="Add new employee"
                             Margin="30,100,0,0"
                             FontSize="15"
                             Visibility="{Binding IsAdminOrOwnerVisability}"
                             Command="{Binding AddNewEmployeeCommand}"/>
+
+                <Button Width="140" Height="30" 
+                            VerticalAlignment="Top" 
+                            Content="Edit employee"
+                            Margin="30,100,0,0"
+                            FontSize="15"
+                            Visibility="{Binding IsAdminOrOwnerVisability}"
+                            Command="{Binding EditEmployeeCommand}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <ListView Margin="20,20,20,0" ItemsSource="{Binding Employees}" x:Name="employees"
-          ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
+          ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedItem="{Binding SelectedEmployee}" Background="Transparent" BorderThickness="0">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Firstname" Width="155" DisplayMemberBinding="{Binding Firstname}" />
@@ -85,10 +93,20 @@
                             <GridViewColumn Header="Phone number" Width="132" DisplayMemberBinding="{Binding Phone}" />
                         </GridView>
                     </ListView.View>
+                    <ListView.Resources>
+                        <ContextMenu x:Key="RemoveEmployee">
+                            <MenuItem Header="Remove employee" Command="{Binding RemoveUserCommand}" CommandParameter="{Binding Id}" Background="WhiteSmoke" />
+                        </ContextMenu>
+                    </ListView.Resources>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
                             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsOwnerOrAdmin}" Value="True">
+                                    <Setter Property="ContextMenu" Value="{StaticResource RemoveEmployee}" />
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>

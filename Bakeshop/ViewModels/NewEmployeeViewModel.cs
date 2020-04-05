@@ -20,7 +20,7 @@ namespace Bakeshop.ViewModels
         private string _password;
         private string _selectedPositionType;
         private string _phone;
-        private int _age;
+        private string _age;
         private CollectionView _positionTypes;
         private BakeshopContext _context;
 
@@ -63,8 +63,8 @@ namespace Bakeshop.ViewModels
 
         public string Age
         {
-            get { return _selectedPositionType; }
-            set { Set(ref _selectedPositionType, value); }
+            get { return _age; }
+            set { Set(ref _age, value); }
         }
 
         public string Phone
@@ -105,9 +105,15 @@ namespace Bakeshop.ViewModels
 
             int result;
 
-            if (int.TryParse(Age, out result))
+            if (!int.TryParse(Age, out result))
             {
                 MessageBox.Show("All fields must be filled.", "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (result <= 18 || result > 80)
+            {
+                MessageBox.Show("Incorrect age.", "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -117,6 +123,7 @@ namespace Bakeshop.ViewModels
                 Email = Email,
                 Firstname = Firstname,
                 Lastname = Lastname,
+                Phone = Phone,
                 Password = Password,
                 Position = ConverStringPositionToPosition(SelectedPositionType)
             };

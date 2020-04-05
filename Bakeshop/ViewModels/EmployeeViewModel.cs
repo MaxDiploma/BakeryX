@@ -1,5 +1,6 @@
 ﻿using Bakeshop.CommandHandler;
 using Bakeshop.Common.Enums;
+using Bakeshop.DomainModels;
 using Bakeshop.EF;
 using Bakeshop.EF.Models;
 using Bakeshop.Extensions;
@@ -20,7 +21,8 @@ namespace Bakeshop.ViewModels
     public class EmployeeViewModel : ObservableObject, IDisposable
     {
         private BakeshopContext _context;
-        private ObservableCollection<BakeshopWorker> _employees;
+        private ObservableCollection<EmployeeDomain> _employees;
+        private EmployeeDomain _selectedEmployee;
         private bool _isOrderedByDescendingFirstname;
         private bool _isOrderedByDescendingLastname;
         private bool _isOrderedByDescendingPosition;
@@ -35,6 +37,7 @@ namespace Bakeshop.ViewModels
             SortByPositionCommand = new RelayCommand(SortByPosition);
             GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
             AddNewEmployeeCommand = new RelayCommand(AddNewEmployee);
+            EditEmployeeCommand = new RelayCommand(EditEmployee);
 
             CurrentUser = CurrentUserManagment.GetCurrentUser();
             var IsAdminOrOwner = CurrentUser.Position == Positions.Owner || CurrentUser.Position == Positions.Manager ? true : false;
@@ -43,10 +46,16 @@ namespace Bakeshop.ViewModels
             LoadEmployees();
         }
 
-        public ObservableCollection<BakeshopWorker> Employees
+        public ObservableCollection<EmployeeDomain> Employees
         {
             get { return _employees; }
             set { Set(ref _employees, value); }
+        }
+
+        public EmployeeDomain SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set { Set(ref _selectedEmployee, value); }
         }
 
         public Visibility IsAdminOrOwnerVisability
@@ -65,6 +74,8 @@ namespace Bakeshop.ViewModels
 
         public ICommand AddNewEmployeeCommand { get; set; }
 
+        public ICommand EditEmployeeCommand { get; set; }
+
         public Action CloseAction { get; set; }
 
         public BakeshopWorker CurrentUser { get; set; }
@@ -79,20 +90,40 @@ namespace Bakeshop.ViewModels
 
         public async void LoadEmployees()
         {
-            Employees = new ObservableCollection<BakeshopWorker>();
+            Employees = new ObservableCollection<EmployeeDomain>();
 
             var employees = await _context.BakeshopWorkers.ToListAsync();
 
-            foreach (var employee in employees)
+            var domainEmployees = employees.Select(e => e.ToDomain());
+
+            foreach (var employee in domainEmployees)
             {
+                employee.OnEmployeeRemoved += ReloadEmployees;
                 Employees.Add(employee);
             }
+        }
+
+        public void ReloadEmployees(object sender, EventArgs e)
+        {
+            LoadEmployees();
         }
 
         public void AddNewEmployee()
         {
             var newEmployee = new NewEmployeeView();
             newEmployee.ShowDialog();
+            _context = new BakeshopContext();
+            LoadEmployees();
+        }
+
+        public void EditEmployee()
+        {
+            var editEmployee = new EditEmployeeView();
+            editEmployee.DataContext = new EditEmployeeViewModel(SelectedEmployee.Id)
+            {
+                CloseAction = ((EditEmployeeViewModel)editEmployee.DataContext).CloseAction
+            };
+            editEmployee.ShowDialog();
             _context = new BakeshopContext();
             LoadEmployees();
         }
@@ -154,6 +185,7 @@ namespace Bakeshop.ViewModels
 
             var employees = await _context.BakeshopWorkers
                 .Where(e => e.Firstname.Contains(searchQuery) || e.Lastname.Contains(searchQuery))
+                .Select(e => e.ToDomain())
                 .ToListAsync();
 
             foreach (var employee in employees)

@@ -163,6 +163,8 @@ namespace Bakeshop.ViewModels
                     sales.Add(sale);
                 }
 
+                _context.Sales.AddRange(sales);
+
                 _context.SaveChanges();
 
                 var receiptView = new ReceiptView();

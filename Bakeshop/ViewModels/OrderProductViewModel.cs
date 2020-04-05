@@ -21,7 +21,7 @@ namespace Bakeshop.ViewModels
         private Supplier _supplier;
         private CollectionView _productsTypes;
         private CollectionView _uoms;
-        private string _selectedProductTypel;
+        private string _selectedProductType;
         private string _selectedUom;
         private string _quantity;
 
@@ -65,13 +65,23 @@ namespace Bakeshop.ViewModels
         public CollectionView Uoms
         {
             get { return _uoms; }
-            set { Set(ref _uoms, value); }
+            set
+            {
+                Set(ref _uoms, value);
+            }
         }
 
         public string SelectedProductType
         {
-            get { return _selectedProductTypel; }
-            set { Set(ref _selectedProductTypel, value); }
+            get { return _selectedProductType; }
+            set
+            {
+                var uomsComboData = new List<ComboData>();
+                var product = _context.Products.FirstOrDefault(p => p.Name == value);
+                uomsComboData.Add(new ComboData { Value = ConvertUomToString(product.Uom) });
+                Uoms = new CollectionView(uomsComboData);
+                Set(ref _selectedProductType, value);
+            }
         }
 
         public string SelectedUom
@@ -87,7 +97,6 @@ namespace Bakeshop.ViewModels
                 Supplier = _context.Suppliers.Include(s => s.Products).FirstOrDefault(s => s.Id == supplierId);
 
                 var productsComboData = new List<ComboData>();
-                var uomsComboData = new List<ComboData>();
 
                 foreach (var product in Supplier.Products)
                 {
@@ -95,13 +104,6 @@ namespace Bakeshop.ViewModels
                 }
 
                 ProductTypes = new CollectionView(productsComboData);
-
-                uomsComboData.Add(new ComboData { Value = "Litres" });
-                uomsComboData.Add(new ComboData { Value = "Gramms" });
-                uomsComboData.Add(new ComboData { Value = "Killograms" });
-                uomsComboData.Add(new ComboData { Value = "Pcs" });
-
-                Uoms = new CollectionView(uomsComboData);
             }
         }
 
@@ -144,6 +146,23 @@ namespace Bakeshop.ViewModels
                     return UomTypes.Killograms;
                 default:
                     return UomTypes.Empty;
+            }
+        }
+
+        private string ConvertUomToString(UomTypes uom)
+        {
+            switch (uom)
+            {
+                case UomTypes.Litres:
+                    return "Litres";
+                case UomTypes.Pcs:
+                    return "Pcs";
+                case UomTypes.Gramms:
+                    return "Gramms";
+                case UomTypes.Killograms:
+                    return "Killograms";
+                default:
+                    return "";
             }
         }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Bakeshop.Common.Enums;
 
 namespace Bakeshop.EF.Models
 {
@@ -7,6 +7,8 @@ namespace Bakeshop.EF.Models
         public string Name { get; set; }
 
         public Supplier Supplier { get; set; }
+
+        public UomTypes Uom { get; set; }
 
     }
 }
