@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakeshop.Views"
         mc:Ignorable="d"
-        Title="Recipes" Height="500" Width="800">
+        Title="Recipes" Height="600" Width="800">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="300"/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
 
-            <Border  Grid.RowSpan="3">
+            <Border  Grid.RowSpan="4">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="#FC5C7D" Offset="0.0"/>
@@ -41,7 +42,30 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Width="800" Grid.Row="1" Margin="10">
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Width="120"
+                            Height="50"
+                            Content="Add new recipe"
+                            Command="{Binding AddNewRecipeCommand}"
+                           Visibility="{Binding IsAdminOrOwnerVisability}"
+                             Margin="30,15,0,0"/>
+
+                <Button Width="120"
+                            Height="50"
+                            Content="Edit recipe"
+                        Visibility="{Binding IsAdminOrOwnerVisability}"
+                            Command="{Binding EditRecipeCommand}"
+                             Margin="30,15,0,0"/>
+
+                <Button Width="120"
+                            Height="50"
+                            Content="Remove recipe"
+                        Visibility="{Binding IsAdminOrOwnerVisability}"
+                            Command="{Binding DeleteRecipeCommand}"
+                             Margin="30,15,0,0"/>
+            </StackPanel>
+
+            <StackPanel Width="800" Grid.Row="2" Margin="10">
                 <ListBox
                          BorderThickness="0"
                          Background="Transparent"
@@ -50,7 +74,7 @@
                          ItemsSource="{Binding Formulas}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ScrollViewer.VerticalScrollBarVisibility="Visible"
-                         SelectedItem="{Binding SelectedItem}">
+                         SelectedItem="{Binding SelectedFormula}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal"/>
@@ -77,7 +101,7 @@
                 </ListBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
                 <Button Margin="300,0,0,0"
                         Height="50"
                         Width="100"
@@ -91,7 +115,7 @@
                         IsEnabled="{Binding IsNextPageButtonEnabled}"
                         Command="{Binding NextPageCommand}"/>
             </StackPanel>
-            
+
         </Grid>
     </Grid>
 </Window>

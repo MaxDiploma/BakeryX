@@ -26,6 +26,7 @@ namespace Bakeshop.ViewModels
         private bool _isOrderedByDescendingPosition;
         private Visibility _isUserAdminOrOwnerVisability;
         private ICommand _searchCommand;
+        private SupplierDomain _selectedEmployee;
 
         public SuppliersViewModel()
         {
@@ -35,6 +36,7 @@ namespace Bakeshop.ViewModels
             SortByPositionCommand = new RelayCommand(SortByPosition);
             GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
             AddNewSupplierCommand = new RelayCommand(AddNewSupplier);
+            EditSupplierCommand = new RelayCommand(EditSupplier);
 
             var currentUser = CurrentUserManagment.GetCurrentUser();
             var IsAdminOrOwner = currentUser.Position == Positions.Owner || currentUser.Position == Positions.Manager ? true : false;
@@ -47,6 +49,12 @@ namespace Bakeshop.ViewModels
         {
             get { return _employees; }
             set { Set(ref _employees, value); }
+        }
+
+        public SupplierDomain SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set { Set(ref _selectedEmployee, value); }
         }
 
         public Visibility IsAdminOrOwnerVisability
@@ -64,6 +72,8 @@ namespace Bakeshop.ViewModels
         public ICommand SortByPositionCommand { get; set; }
 
         public ICommand AddNewSupplierCommand { get; set; }
+
+        public ICommand EditSupplierCommand { get; set; }
 
         public Action CloseAction { get; set; }
 
@@ -84,6 +94,24 @@ namespace Bakeshop.ViewModels
                 CloseAction = ((NewSupplierViewModel)newSupplier.DataContext).CloseAction
             };
             newSupplier.ShowDialog();
+            _context = new BakeshopContext();
+            LoadEmployees();
+        }
+
+        public void EditSupplier()
+        {
+            if (SelectedEmployee == null)
+            {
+                MessageBox.Show("Products already exists in the list.", "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var editSupplier = new EditSupplierView();
+            editSupplier.DataContext = new EditSupplierViewModel(SelectedEmployee.Id)
+            {
+                CloseAction = ((EditSupplierViewModel)editSupplier.DataContext).CloseAction
+            };
+            editSupplier.ShowDialog();
             _context = new BakeshopContext();
             LoadEmployees();
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakeshop.Views"
         mc:Ignorable="d"
-        Title="NewEmployeeView" Height="600" Width="800">
+        Title="New Employee" Height="600" Width="800">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -23,13 +23,20 @@
                 </Border.Background>
             </Border>
 
-            <StackPanel Grid.Row="0">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Width="49" Height="40" 
+                            VerticalAlignment="Top" 
+                            Content="&#x2190;"
+                            Margin="30,20,0,0"
+                            FontSize="15"
+                            Command="{Binding GetToPreviousWindowCommand}"/>
+
                 <TextBlock Text="New Employee"
                 FontSize="38"
                            TextWrapping="Wrap"
                            FontFamily="Helvetica"
                            FontWeight="Light"
-                           Margin="10"
+                           Margin="20,20,20,20"
                            Foreground="Azure"
                            HorizontalAlignment="Center"/>
             </StackPanel>

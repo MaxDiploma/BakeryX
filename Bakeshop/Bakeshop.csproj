@@ -179,15 +179,18 @@
     <Compile Include="Extensions\RecipeExtensions.cs" />
     <Compile Include="Extensions\SupplierExtensions.cs" />
     <Compile Include="StaticResources\CurrentUserManagment.cs" />
+    <Compile Include="ViewModels\AddIngredientToFomulaViewModel.cs" />
     <Compile Include="ViewModels\AddProductOrIngredientViewModel.cs" />
     <Compile Include="ViewModels\AnalysisCenterDatesPickerModel.cs" />
     <Compile Include="ViewModels\AnalysisCenterViewModel.cs" />
     <Compile Include="ViewModels\EditEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\EditRecipeViewModel.cs" />
     <Compile Include="ViewModels\EditSupplierViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\NewEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\NewRecipeViewModel.cs" />
     <Compile Include="ViewModels\NewSupplierViewModel.cs" />
     <Compile Include="ViewModels\OrderProductViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
@@ -198,6 +201,9 @@
     <Compile Include="ViewModels\SuppliersViewModel.cs" />
     <Compile Include="ViewModels\WarehouseViewModel.cs" />
     <Compile Include="ViewModels\WorkstationViewModel.cs" />
+    <Compile Include="Views\AddIngredientToFomulaView.xaml.cs">
+      <DependentUpon>AddIngredientToFomulaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddProductOrIngredientView.xaml.cs">
       <DependentUpon>AddProductOrIngredientView.xaml</DependentUpon>
     </Compile>
@@ -209,6 +215,9 @@
     </Compile>
     <Compile Include="Views\EditEmployeeView.xaml.cs">
       <DependentUpon>EditEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditRecipeView.xaml.cs">
+      <DependentUpon>EditRecipeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditSupplierView.xaml.cs">
       <DependentUpon>EditSupplierView.xaml</DependentUpon>
@@ -224,6 +233,9 @@
     </Compile>
     <Compile Include="Views\NewEmployeeView.xaml.cs">
       <DependentUpon>NewEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewRecipeView.xaml.cs">
+      <DependentUpon>NewRecipeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewSupplierView.xaml.cs">
       <DependentUpon>NewSupplierView.xaml</DependentUpon>
@@ -301,6 +313,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddIngredientToFomulaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddProductOrIngredientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -314,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditRecipeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -334,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewRecipeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

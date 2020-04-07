@@ -125,6 +125,10 @@
     <Compile Include="Migrations\202004051301256_AddUomsToProduct.designer.cs">
       <DependentUpon>202004051301256_AddUomsToProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004062211061_FormulasIngredients.cs" />
+    <Compile Include="Migrations\202004062211061_FormulasIngredients.designer.cs">
+      <DependentUpon>202004062211061_FormulasIngredients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BakeryProduct.cs" />
     <Compile Include="Models\BakeshopProduct.cs" />
@@ -203,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004051301256_AddUomsToProduct.resx">
       <DependentUpon>202004051301256_AddUomsToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004062211061_FormulasIngredients.resx">
+      <DependentUpon>202004062211061_FormulasIngredients.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

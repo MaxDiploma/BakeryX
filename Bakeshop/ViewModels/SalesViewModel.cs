@@ -31,6 +31,7 @@ namespace Bakeshop.ViewModels
             SortByAmountCommand = new RelayCommand(SortByAmount);
             SortByDateCommand = new RelayCommand(SortByDate);
             GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
+            PrintCommand = new RelayCommand(Print);
             LoadSales();
         }
 
@@ -48,6 +49,8 @@ namespace Bakeshop.ViewModels
 
         public ICommand SortByDateCommand { get; set; }
 
+        public ICommand PrintCommand { get; set; }
+
         public Action CloseAction { get; set; }
 
         public ICommand SearchCommand
@@ -57,6 +60,8 @@ namespace Bakeshop.ViewModels
                 return _searchCommand ?? (_searchCommand = new BaseCommandHandler(param => SearchHandler(param), true));
             }
         }
+
+        public Grid PrintView { get; set; }
 
         public async void LoadSales()
         {
@@ -100,6 +105,15 @@ namespace Bakeshop.ViewModels
             }
 
             RaisePropertyChanged("Sales");
+        }
+
+        public void Print()
+        {
+            var printdialog = new PrintDialog();
+            if (printdialog.ShowDialog() == true)
+            {
+                printdialog.PrintVisual(PrintView, "Receipt");
+            }
         }
 
         private void SortByDate()

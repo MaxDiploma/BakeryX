@@ -5,8 +5,238 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakeshop.Views"
         mc:Ignorable="d"
-        Title="EditSupplierView" Height="450" Width="800">
+        Title="Edit Supplier" Height="700" Width="800">
     <Grid>
-        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="500"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border  Grid.RowSpan="3">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#FC5C7D" Offset="0.0"/>
+                        <GradientStop Color="#6A82FB" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Width="49" Height="40" 
+                            VerticalAlignment="Top" 
+                            Content="&#x2190;"
+                            Margin="30,20,0,0"
+                            FontSize="15"
+                            Command="{Binding GetToPreviousWindowCommand}"/>
+                <TextBlock Text="Edit supplier"
+                FontSize="38"
+                           TextWrapping="Wrap"
+                           FontFamily="Helvetica"
+                           FontWeight="Light"
+                           Margin="20,20,20,20"
+                           Foreground="Azure"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="1" Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Firstname"
+                               Margin="20,0,0,0"
+                               Foreground="White"
+                               FontFamily="Helvetica"
+                               FontSize="22"
+                               FontWeight="Light"/>
+                    <TextBox FontFamily="Helvetica"
+                            FontWeight="Light"
+                            Text="{Binding Supplier.Firstname}"
+                            FontSize="20"
+                            HorizontalAlignment="Center"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="270"
+                            HorizontalContentAlignment="Left"
+                             
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="150,0,0,0"/>
+
+                </StackPanel>
+                <Border Width="270"
+                       Height="2"
+                       Background="White"
+                       Opacity="0.5"/>
+
+                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Lastname"
+                               Margin="20,0,0,0"
+                               Foreground="White"
+                               FontFamily="Helvetica"
+                               FontSize="22"
+                               FontWeight="Light" Width="134"/>
+                    <TextBox FontFamily="Helvetica"
+                            FontWeight="Light"
+                            Text="{Binding Supplier.Lastname}"
+                            FontSize="20"
+                            HorizontalAlignment="Center"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="270"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="110,0,0,0"/>
+
+                </StackPanel>
+
+                <Border Width="270"
+                       Height="2"
+                       Background="White"
+                       Opacity="0.5"/>
+                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Email"
+                               Margin="20,0,0,0"
+                               Foreground="White"
+                               FontFamily="Helvetica"
+                               FontSize="22"
+                               FontWeight="Light" Width="134"/>
+                    <TextBox FontFamily="Helvetica"
+                            FontWeight="Light"
+                            Text="{Binding Supplier.Email}"
+                            FontSize="20"
+                            HorizontalAlignment="Center"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="270"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="110,0,0,0"/>
+
+                </StackPanel>
+
+                <Border Width="270"
+                       Height="2"
+                       Background="White"
+                       Opacity="0.5"/>
+                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Age"
+                               Margin="20,0,0,0"
+                               Foreground="White"
+                               FontFamily="Helvetica"
+                               FontSize="22"
+                               FontWeight="Light" Width="134"/>
+                    <TextBox FontFamily="Helvetica"
+                            FontWeight="Light"
+                            Text="{Binding Supplier.Age}"
+                            FontSize="20"
+                            HorizontalAlignment="Center"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="270"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="26"
+                            Margin="110,0,0,0"/>
+
+                </StackPanel>
+
+                <Border Width="270"
+                       Height="2"
+                       Background="White"
+                       Opacity="0.5"/>
+
+                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Phone"
+                               Margin="20,0,0,0"
+                               Foreground="White"
+                               FontFamily="Helvetica"
+                               FontSize="22"
+                               FontWeight="Light" Width="134"/>
+                    <TextBox FontFamily="Helvetica"
+                            FontWeight="Light"
+                            Text="{Binding Supplier.Phone}"
+                             MaxLength="11"
+                            FontSize="20"
+                            HorizontalAlignment="Center"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="270"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="26"
+                            Margin="110,0,0,0"/>
+
+                </StackPanel>
+
+                <Border Width="270"
+                       Height="2"
+                       Background="White"
+                       Opacity="0.5"/>
+
+
+                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Position"
+                               Margin="20,0,0,0"
+                               Foreground="White"
+                               FontFamily="Helvetica"
+                               FontSize="22"
+                               FontWeight="Light" Width="134"
+                               />
+
+                    <ComboBox Margin="105,10,0,0" ItemsSource="{Binding PositionTypes}" 
+                DisplayMemberPath="Value" 
+                SelectedValuePath="Value" 
+                SelectedValue="{Binding SelectedPositionType}"
+                Width="270"
+                Height="30"
+                FontSize="16"
+                FontFamily="Helvetica"/>
+
+                </StackPanel>
+                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Products"
+                               Margin="20,0,0,0"
+                               Foreground="White"
+                               FontFamily="Helvetica"
+                               FontSize="22"
+                               FontWeight="Light" Width="134"/>
+                    <ComboBox Margin="105,0,0,0" ItemsSource="{Binding Products}" 
+                DisplayMemberPath="Value" 
+                SelectedValuePath="Value" 
+                SelectedValue="{Binding SelectedProduct}"
+                Width="270"
+                Height="30"
+                FontSize="16"
+                FontFamily="Helvetica"/>
+                    <Button Content="+"
+                            Margin="20,0,0,0"
+                            Width="40"
+                            Command="{Binding AddProductToSupplierCommand}"/>
+
+                    <Button Content="-"
+                            Margin="20,0,0,0"
+                            Width="40"
+                            Command="{Binding RemoveProductFromSupplierCommand}"/>
+                </StackPanel>
+            </StackPanel>
+
+
+
+            <StackPanel Grid.Row="2">
+                <Button Width="100"
+                            Height="40"
+                            Content="EDIT"
+                            Command="{Binding EditSupplierCommand}"
+                             Margin="0,15,0,0"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

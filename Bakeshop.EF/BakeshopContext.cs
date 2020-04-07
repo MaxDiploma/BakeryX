@@ -24,5 +24,7 @@ namespace Bakeshop.EF
         public DbSet<BakeryProduct> BakeryProducts { get; set; }
 
         public DbSet<Sale> Sales { get; set; }
+
+        public DbSet<FormulaIngredient> FormulaIngredients { get; set; }
     }
 }

@@ -1,0 +1,75 @@
+﻿<Window x:Class="Bakeshop.Views.AddIngredientToFomulaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bakeshop.Views"
+        mc:Ignorable="d"
+        Title="Add ingredient" Height="450" Width="330">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border  Grid.RowSpan="4">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FC5C7D" Offset="0.0"/>
+                    <GradientStop Color="#6A82FB" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <StackPanel Grid.Row="0">
+            <ComboBox Margin="10,50,0,0" ItemsSource="{Binding Products}" 
+                DisplayMemberPath="Value" 
+                SelectedValuePath="Value" 
+                SelectedValue="{Binding SelectedIngredientName}"
+                Width="270"
+                Height="30"
+                FontSize="16"
+                FontFamily="Helvetica"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <ComboBox Margin="10,50,0,0" ItemsSource="{Binding Uoms}" 
+                DisplayMemberPath="Value" 
+                SelectedValuePath="Value" 
+                SelectedValue="{Binding SelectedUom}"
+                Width="270"
+                Height="30"
+                FontSize="16"
+                FontFamily="Helvetica"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock FontSize="30"
+                           FontFamily="Helvetica"
+                           FontWeight="Light"
+                           Foreground="AliceBlue"
+                           TextWrapping="Wrap"
+                           Height="35" HorizontalAlignment="Center" Width="115" Text="Quantity"/>
+                <TextBox Margin="0,20,0,0"
+                Text="{Binding Quantity}"
+                Width="220"
+                Height="30"
+                FontSize="16"
+                Background="Transparent"
+                BorderBrush="Black"
+                BorderThickness="2"
+                FontFamily="Helvetica"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="10">
+            <Button Width="120"
+                            Height="40"
+                            Content="ADD INGREDIENT"
+                            Command="{Binding AddIngredientToRecipeCommand}"
+                             Margin="0,15,0,0"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -77,11 +77,11 @@
                             Margin="30,100,0,0"
                             FontSize="15"
                             Visibility="{Binding IsAdminOrOwnerVisability}"
-                            Command="{Binding SortByPositionCommand}"/>
+                            Command="{Binding EditSupplierCommand}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Row="2">
-                <ListView Margin="20,20,20,0" ItemsSource="{Binding Employees}" x:Name="employees"
+                <ListView Margin="20,20,20,0" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" x:Name="employees"
           ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
                     <ListView.View>
                         <GridView>

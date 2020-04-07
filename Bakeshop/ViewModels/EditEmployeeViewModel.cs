@@ -26,6 +26,7 @@ namespace Bakeshop.ViewModels
             _id = id;
             _context = new BakeshopContext();
             EditEmployeeCommand = new RelayCommand(EditEmployee);
+            GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
             LoadPositions();
             LoadWorker(id);
         }
@@ -58,6 +59,13 @@ namespace Bakeshop.ViewModels
         public Action CloseAction { get; set; }
 
         public ICommand EditEmployeeCommand { get; set; }
+
+        public ICommand GetToPreviousWindowCommand { get; set; }
+
+        public void GetToPreviousWindow()
+        {
+            CloseAction();
+        }
 
         public void EditEmployee()
         {

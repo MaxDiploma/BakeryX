@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Bakeshop.Views"
+        xmlns:local="clr-namespace:Bakeshop.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="SalesView" Height="486.593" Width="800">
-    <Grid>
+    <Grid x:Name="print">
 
         <Border  Grid.RowSpan="2"
                     Grid.ColumnSpan="3">
@@ -38,6 +38,10 @@
                            FontWeight="Light"
                            Foreground="AliceBlue"
                            TextWrapping="Wrap"/>
+
+                <Button HorizontalAlignment="Right" Margin="500,20,0,0" VerticalAlignment="Top" Command="{Binding PrintCommand}">
+                    <materialDesign:PackIcon Kind="Printer" Height="50" Width="50"/>
+                </Button>
             </StackPanel>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">

@@ -4,15 +4,14 @@ using System.Windows;
 
 namespace Bakeshop.Views
 {
-    public partial class SalesView : Window
+    public partial class AddIngredientToFomulaView : Window
     {
-        public SalesView()
+        public AddIngredientToFomulaView()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            var viewModel = new SalesViewModel();
+            var viewModel = new AddIngredientToFomulaViewModel();
             this.DataContext = viewModel;
-            viewModel.PrintView = print;
             if (viewModel.CloseAction == null)
                 viewModel.CloseAction = new Action(this.Close);
         }

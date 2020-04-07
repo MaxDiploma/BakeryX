@@ -49,10 +49,9 @@
           ScrollViewer.HorizontalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Ingredient" Width="150" DisplayMemberBinding="{Binding Name}" />
-                            <GridViewColumn Header="Recipe" Width="130" DisplayMemberBinding="{Binding Quantity}" />
-                            <GridViewColumn Header="Quantity" Width="145" DisplayMemberBinding="{Binding Quantity}" />
-                            <GridViewColumn Header="Unit of measure" Width="145" DisplayMemberBinding="{Binding UomType}" />
+                            <GridViewColumn Header="Ingredient" Width="195" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Quantity" Width="180" DisplayMemberBinding="{Binding Quantity}" />
+                            <GridViewColumn Header="Unit of measure" Width="210" DisplayMemberBinding="{Binding UomType}" />
 
                         </GridView>
                     </ListView.View>

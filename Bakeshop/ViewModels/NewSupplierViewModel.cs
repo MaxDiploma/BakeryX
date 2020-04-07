@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace Bakeshop.ViewModels
 {
-    class NewSupplierViewModel : ObservableObject, IDisposable
+    public class NewSupplierViewModel : ObservableObject, IDisposable
     {
         private string _firstname;
         private string _lastname;
@@ -33,6 +33,7 @@ namespace Bakeshop.ViewModels
             AddProductToSupplierCommand = new RelayCommand(AddProductToSupplier);
             AddNewSupplierCommand = new RelayCommand(AddSupplier);
             RemoveProductFromSupplierCommand = new RelayCommand(RemoveProductFromSupplier);
+            GetToPreviousWindowCommand = new RelayCommand(GetToPreviousWindow);
             _context = new BakeshopContext();
             LoadPositions();
         }
@@ -102,6 +103,13 @@ namespace Bakeshop.ViewModels
         public ICommand AddProductToSupplierCommand { get; set; }
 
         public ICommand RemoveProductFromSupplierCommand { get; set; }
+
+        public ICommand GetToPreviousWindowCommand { get; set; }
+
+        public void GetToPreviousWindow()
+        {
+            CloseAction();
+        }
 
         public Action CloseAction { get; set; }
 
